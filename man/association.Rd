@@ -17,7 +17,7 @@
 association(formula, data, model=c("all"), model.interaction=
        c("codominant"), subset, name.snp = NULL, quantitative = 
        is.quantitative(formula,data), genotypingRate= 0, 
-       level = 0.95, ...)
+       level = 0.95)
 }
 
 \arguments{
@@ -50,7 +50,6 @@ association(formula, data, model=c("all"), model.interaction=
                   Default is 0\% (e.g. all SNPs are analyzed). This parameter should not be
                   changed. It is used in the function 'WGassociation'.}
   \item{level}{signification level for confidence intervals.}
-  \item{...}{Other arguments to be passed through glm function}
 }
 
 \details{
@@ -76,10 +75,6 @@ association(formula, data, model=c("all"), model.interaction=
 }
 
 \references{
-JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
-SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
-2007;23(5):654-5.
-
 Iniesta R, Guino E, Moreno V. Statistical analysis of genetic polymorphisms in epidemiological studies.
 Gac Sanit. 2005;19(4):333-41.
 
@@ -119,11 +114,11 @@ association(log(protein)~snp10001*sex+blood.pre, data=datSNP,
           model="codominant")
 
 # Interaction SNP and SNP (codominant and codominant)
-association(log(protein)~snp10001*factor(snp10002)+blood.pre, 
+association(log(protein)~snp10001*codominant(snp10002)+blood.pre, 
           data=datSNP, model="codominant")
 
 # Interaction SNP and SNP (dominant and recessive)
-association(log(protein)~snp10001*factor(recessive(snp100019))+blood.pre, 
+association(log(protein)~snp10001*recessive(snp100019)+blood.pre, 
           data=datSNP, model="dominant")
 
 

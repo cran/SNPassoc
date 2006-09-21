@@ -34,7 +34,7 @@
  after Bonferroni correction
 }
 
-
+}
 \seealso{ \code{\link{WGassociation}}}
 \examples{
 data(SNPs)

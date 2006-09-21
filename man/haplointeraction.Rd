@@ -11,7 +11,7 @@
 
 \usage{
 haplo.interaction(formula, data, SNPs.sel, quantitative = 
-  is.quantitative(formula, data), haplo.freq.min = 0.05, ...)
+  is.quantitative(formula, data), haplo.freq.min = 0.05, sep="/", ...)
 }
 
 \arguments{
@@ -22,8 +22,9 @@ haplo.interaction(formula, data, SNPs.sel, quantitative =
                 'interaction' function (e.g. \code{~}int(var), where var is a factor variable) and it is 
                 required. Terms with additional covariates on the the right of the ~ operator may be 
                 added to fit an adjusted model (e.g., \code{~}var1+var2+...+varN+int(var)). }
-  \item{data}{ an object of class 'setupSNP' containing the variables in the model and the SNPs that will be used to estimate the
-               haplotypes. }
+  \item{data}{ an optional data frame containing the variables in the model and the SNPs that will be used to estimate the
+               haplotypes. If not found in 'data', the variables are taken from 'environment(formula)', typically the environment 
+               from which 'haplo.interaction' is called.}
   \item{SNPs.sel}{a vector indicating the names of SNPs that are used to estimate the haplotypes}
   \item{quantitative}{logical value indicating whether the phenotype (which is on the
                       left of the operator \code{~} in 'formula' argument) is quantitative. The function 
@@ -34,6 +35,7 @@ haplo.interaction(formula, data, SNPs.sel, quantitative =
                         haplotype frequency for a haplotype to be included in the regression model as its own effect. The
                         haplotype frequency is based on the EM algorithm that estimates haplotype frequencies independently
                         of any trait. }
+  \item{sep}{character separator used to divide alleles. See \code{snp} function for details.}
   \item{...}{additional parameters for 'haplo.glm.control'.}                      
 }
 
@@ -51,11 +53,10 @@ haplo.interaction(formula, data, SNPs.sel, quantitative =
 }
 
 \examples{
-# not Run
+# not run
 # data(SNPs)
-# datSNP<-setupSNP(SNPs,6:40,sep="")
-# res<-haplo.interaction(log(protein)~int(sex), data=datSNP,
-#      SNPs.sel=c("snp100019","snp10001","snp100029"))
+# res<-haplo.interaction(log(protein)~int(sex), data=SNPs,
+#  SNPs.sel=c("snp100019","snp10001","snp100029"),sep="")
 # res
 }
 \keyword{utilities }

@@ -10,11 +10,22 @@
 
 \usage{
 intervals(o, level=.95, ...)
+intervals.haplo.glm(o, level=.95, sign = 1, FUN=exp, ...)
+print.intervals(x, len = 6, d = 2, exclude.intercept=TRUE, pval=TRUE, ...)
+summary.haplo.glm(object, ...)
 }
 
 \arguments{
   \item{o}{object of class 'haplo.glm'}
+  \item{x}{object of class 'haplo.glm'}
+  \item{object}{object of class 'haplo.glm'}
   \item{level}{significance level. Default is 95 percent}
+  \item{sign}{sign}
+  \item{FUN}{}
+  \item{len}{length}
+  \item{d}{number of decimals}
+  \item{exclude.intercept}{is the intercept excluded?}
+  \item{pval}{is p value printed?}
   \item{...}{other arguments}
 
 }

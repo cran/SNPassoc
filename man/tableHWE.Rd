@@ -6,20 +6,20 @@
 \description{
   Test the null hypothesis that Hardy-Weinberg equilibrium holds in cases, 
   controls and both populations.
- 
-  \code{print} print the information. Number of digits, and significance
-               level can be changed
 }
 \usage{
-tableHWE(x, strata, ...)
-
+tableHWE(x, strata)
+print.tableHWE(x, digits=4, sig=0.05, na="-", ...) 
 }
 
 \arguments{
   \item{x}{an object of class 'setupSNP'}
   \item{strata}{a factor variable for a stratified analysis}
-  \item{...}{optional arguments}
- 
+  \item{digits}{number of significant digits, see 'print.default'}
+  \item{sig}{significance level in the flag column}
+  \item{na}{character string (or 'NULL') indicating 'NA' values in
+          printed output, see 'print.default}
+  \item{...}{further arguments passed to or from other methods}
 }
 \details{
   This function calculates the HWE test for those variables of class 'snp' in the object x of 

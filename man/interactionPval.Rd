@@ -58,11 +58,6 @@ interactionPval(formula, data, quantitative =
   
 }
 
-\references{
-JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
-SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
-2007;23(5):654-5.
-}
 
 \note{  two-dimensional SNP analysis on a dense grid can take a great deal of computer
      time and memory.

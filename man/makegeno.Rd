@@ -9,12 +9,13 @@
 }
 
 \usage{
-make.geno(data, SNPs.sel)
+make.geno(data, SNPs.sel, sep="/")
 }
 
 \arguments{
-  \item{data}{an object of class 'setupSNP' containing the the SNPs that will be used to estimate the haplotypes.}
+  \item{data}{data frame containing the the SNPs that will be used to estimate the haplotypes.}
   \item{SNPs.sel}{ a vector indicating the names of SNPs that are used to estimate the haplotypes  }
+  \item{sep}{character separator used to divide alleles. See \code{snp} function for details.}
 }
 
 
@@ -26,14 +27,8 @@ make.geno(data, SNPs.sel)
 \seealso{\code{\link{snp}}}
 
 \examples{
-## Not run:
 data(SNPs)
-# first, we create an object of class 'setupSNP'
-datSNP<-setupSNP(SNPs,6:40,sep="")
-geno<-make.geno(datSNP,c("snp10001","snp10002","snp10003"))
-## End(Not run)
-
-
+geno<-make.geno(SNPs,c("snp10001","snp10002","snp10003"),sep="")
 }
 
 

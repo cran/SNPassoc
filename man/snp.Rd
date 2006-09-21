@@ -5,35 +5,25 @@
 \alias{reorder.snp}
 \alias{summary.snp}
 \alias{plot.snp}
-\alias{dominant.snp}
-\alias{codominant.snp}
-\alias{recessive.snp}
-\alias{additive.snp}
-\alias{print.snp}
-\alias{[.snp}
-\alias{print.summary.snp}
 
 \title{SNP object}
 \description{
 
   \code{snp} creates an snp object
 
-  \code{is} returns \code{TRUE} if \code{x} is of class 'snp'
+  \code{is.snp} returns \code{TRUE} if \code{x} is of class 'snp'
 
-  \code{as} attempts to coerce its argument into an object of class 'snp'
+  \code{as.snp} attempts to coerce its argument into an object of class 'snp'
 
-  \code{reorder} change the reference genotype
+  \code{reorder.snp} change the reference genotype
 
-  \code{summary} gives a summary for an object of class 'snp' including genotype
+  \code{summary.snp} gives a summary for an object of class 'snp' including genotype
                      and allele frequencies and an exact thest of Hardy-Weinberg 
                      equilibrium 
 
-  \code{plot}    gives a summary for an object of class 'snp' including genotype
+  \code{plot.snp}    gives a summary for an object of class 'snp' including genotype
                      and allele frequencies and an exact thest of Hardy-Weinberg 
                      equilibrium in a plot. Barplot or pie are allowed
-
-  \code{[.snp}   is a copy of [.factor modified to preserve all attributes
-
 }
 \usage{
 
@@ -44,8 +34,11 @@
  
   as.snp(x, ...)
 
-  \method{additive}{snp}(o)
+  reorder.snp(x, ref="common", ...)
 
+  summary.snp(object, print.out=TRUE, ...)
+
+  plot.snp(x, type=barplot, label, ...)
 }
 
 \arguments{
@@ -58,12 +51,16 @@
    'common' or 'minor'. The default is 
     \code{reorder="common"}. In that case, alleles are sorted within each individual by
     common homozygous.}
-  \item{remove.spaces}{logical indicating whether spaces and tabs will be
+  \item{remove.spaces} {logical indicating whether spaces and tabs will be
           removed from the genotypes before processing}
   \item{allow.partial.missing}{logical indicating whether one allele is
           permitted to be missing.  When set to 'FALSE' both alleles
           are set to 'NA' when either is missing.}
-  \item{o}{an object of class 'snp' to be coded as a linear covariate: 0,1,2}
+  \item{ref}{how should genotypes within an individual be reordered. See 'reorder' argument}
+  \item{object}{and object of class 'snp'}
+  \item{print.out}{if the summary printed?. The default is TRUE}
+  \item{type}{type of plot. The default is 'barplot', other R graphics are allowed (for instance 'pie')}
+  \item{label}{optional argument for indicating the desired label of SNP in the plot. }
   \item{...}{optional arguments}
 }
 \details{
@@ -80,26 +77,15 @@
     as "Allele1<sep>Allele2".  If \code{sep} is a numeric value, it is
     assumed that character locations \code{1:sep} contain allele 1 and
     that remaining locations contain allele 2.
-
-  \code{additive.snp} recodes the SNPs for being analyzed as a linear covariate (codes 0,1,2) 
   
-
 }
-
-\references{
-JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
-SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
-2007;23(5):654-5.
-}
-
 
 \value{
- 
-  The snp class extends "factor" where the levels is a character vector of possible 
-   genotype values stored coded by \code{paste( allele1, "", allele2, sep="/")}
-}
   
-
+  The snp class extends "factor" where the levels is a character vector of possible 
+   genotype values stored coded by \code{paste( allele1, "", allele2, sep="/")}}
+  
+}
 
 \seealso{
   \code{\link{association}}  

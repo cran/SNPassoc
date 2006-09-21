@@ -15,11 +15,9 @@ A logical value TRUE if the SNP is Monomorphic, otherwise a FALSE
 }
 
 \examples{
-#
-# data(SNPs)
-# is.Monomorphic(SNPs$snp10001)
-# is.Monomorphic(SNPs$snp100020)
-#
+ data(SNPs)
+ is.Monomorphic(SNPs$snp10001)
+ is.Monomorphic(SNPs$snp100020)
 }
 
 \keyword{internal}

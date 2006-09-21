@@ -7,11 +7,10 @@
 }
 
 \usage{
-\method{plot}{WGassociation}(x, alpha = 0.05, plot.all.SNPs = FALSE, 
+plot.WGassociation(x, alpha = 0.05, plot.all.SNPs = FALSE, 
   print.label.SNPs = TRUE, cutPval = c(0, 1e-10, 1), whole, 
-  ylim.sup=ifelse(is.null(attr(x,"fast")),1e-40, 1e-30),  
-  col.legend = c("red", "gray60"), sort.chromosome=TRUE, 
-  centromere, ...)
+  ylim.sup=1e-40,  col.legend = c("red", "gray60"), 
+  sort.chromosome=TRUE, centromere, ...)
 }
 
 \arguments{
@@ -47,20 +46,14 @@
   In that case a plot of p values in the -log sclae is plotted for each SNP and for each chromosome. 
 
 }
-
-\references{
-JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
-SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
-2007;23(5):654-5.
-}
-
-
 \value{
  No return value, just the plot
 }
 
 \seealso{ \code{\link{association}} \code{\link{setupSNP}} \code{\link{WGassociation}} }
 
+\examples{
 
+}
 
 \keyword{utilities}

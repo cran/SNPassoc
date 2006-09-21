@@ -1,15 +1,12 @@
 Package: SNPassoc
-Version: 1.9-1
-Date: 2013-Nov-8
-Depends: R (>= 3.0.0), haplo.stats, survival, mvtnorm, parallel
+Version: 1.0-2
+Date: 2006-Sep-21
+Depends: R (>= 2.3.1), haplo.stats, survival 
 Title: SNPs-based whole genome association studies
 Author: Juan R González, Lluís Armengol, Elisabet Guinó, Xavier Solé, and Víctor Moreno
-Maintainer: Juan R González <jrgonzalez@creal.cat>
-Description: This package carries out most common analysis when performing whole genome association studies. These analyses include descriptive statistics and exploratory analysis of missing values, calculation of Hardy-Weinberg equilibrium, analysis of association based on generalized linear models (either for quantitative or binary traits), and analysis of multiple SNPs (haplotype and epistasis analysis). Permutation test and related tests (sum statistic and truncated product) are also implemented. Max-statistic and genetic risk-allele score exact distributions are also possible to be estimated. 
-License: GPL (>= 2)
-URL: http://www.creal.cat/jrgonzalez/software.htm
+Maintainer: Juan R González <juanramon.gonzalez@crg.es>
+Description: This package carries out most common analysis when performing whole genome association studies. These analyses include descriptive statistics and exploratory analysis of missing values, calculation of Hardy-Weinberg equilibrium, analysis of association based on generalized linear models (either for quantitative or binary traits), and analysis of multiple SNPs (haplotype and epistasis analysis) 
+License: GPL version 2 or newer
+URL: http://www.r-project.org
 Encoding: latin1
-Packaged: 2013-11-08 10:48:14 UTC; jrgonzalez
-NeedsCompilation: no
-Repository: CRAN
-Date/Publication: 2013-11-08 14:58:06
+Packaged: Fri Sep 29 15:07:19 2006; jrgonzalez

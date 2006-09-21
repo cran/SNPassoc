@@ -1,12 +1,6 @@
 \name{setupSNP}
 \alias{setupSNP}
 \alias{summary.setupSNP}
-\alias{plot.setupSNP}
-\alias{[.setupSNP}
-\alias{[[<-.setupSNP}
-\alias{[<-.setupSNP}
-\alias{$<-.setupSNP} 
-\alias{labels.setupSNP}
 
 \title{Convert columns in a dataframe to class 'snp'}
 
@@ -20,7 +14,9 @@
 }
 
 \usage{
-setupSNP(data, colSNPs, sort = FALSE, info, sep = "/", ...)
+setupSNP(data, colSNPs, sort = FALSE, info, sep = "/")
+
+summary.setupSNP(object, ...)
 }
 
 \arguments{
@@ -31,19 +27,13 @@ setupSNP(data, colSNPs, sort = FALSE, info, sep = "/", ...)
        about the SNPs regarding their genomic position and the gene where 
        they are located}
   \item{sep}{character separator used to divide alleles in the genotypes}
+  \item{object}{an object of class 'setupSNP'}
   \item{...}{optional arguments}
 }
 \value{
  a dataframe of class 'setupSNP' containing converted SNP variables. 
  All other variables will be unchanged.
 }
-
-\references{
-JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
-SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
-2007;23(5):654-5.
-}
-
 
 \seealso{ \code{\link{snp}}}
 
@@ -52,16 +42,12 @@ SNPassoc: an R package to perform whole genome association studies. Bioinformati
  data(SNPs)
  myDat<-setupSNP(SNPs,6:40,sep="")
 
-
 #sorted SNPs and having genomic information
  data(SNPs.info.pos)
  myDat.o<-setupSNP(SNPs,6:40,sep="",sort=TRUE, info=SNPs.info.pos)
 
 # summary
  summary(myDat.o)
-
-# plot one SNP
-  plot(myDat,which=2)
 
 }
 \keyword{utilities}
