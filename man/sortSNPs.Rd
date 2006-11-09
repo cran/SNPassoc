@@ -33,11 +33,11 @@ sortSNPs(data, colSNPs, info)
 }
 
 \examples{
-data(SNPs)
-data(SNPs.info.pos)
-colSNPs.order<-sortSNPs(SNPs,c(6:40),SNPs.info.pos)
-
-
+#
+# data(SNPs)
+# data(SNPs.info.pos)
+# colSNPs.order<-sortSNPs(SNPs,c(6:40),SNPs.info.pos)
+#
 }
 \keyword{utilities}
 

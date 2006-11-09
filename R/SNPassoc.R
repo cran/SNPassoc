@@ -382,7 +382,7 @@ is.snp<-function(x)
 }
 
 
-setupSNP<-function(data, colSNPs, sort=FALSE, info, sep="/")
+setupSNP<-function(data, colSNPs, sort=FALSE, info, sep="/", ...)
 
 {
  x<-data
@@ -398,11 +398,11 @@ setupSNP<-function(data, colSNPs, sort=FALSE, info, sep="/")
      pos <- temp$pos 
      info <- temp$dataSorted
      temp <- x[, pos]
-     dataSNPs <- lapply(temp, snp, sep = sep)
+     dataSNPs <- lapply(temp, snp, sep = sep, ...)
    }
  else
    { 
-    dataSNPs <- lapply(x[,colSNPs],snp,sep=sep)
+    dataSNPs <- lapply(x[,colSNPs],snp,sep=sep, ...)
    }
  
  datPhen<-x[,-colSNPs]
@@ -1258,17 +1258,27 @@ WGassociation<-function (formula, data, model=c("all"), quantitative = is.quanti
     data), genotypingRate = 80, level=0.95)
  {
   
-   if(!inherits(data,"setupSNP"))
+    if(!inherits(data,"setupSNP"))
      stop("data must be an object of class 'setupSNP'")
 
-   if (length(attr(data,"colSNPs")) > 2000 & (length(model) > 1 | any(model%in%"all"))) 
+    if (length(attr(data,"colSNPs")) > 2000 & (length(model) > 1 | any(model%in%"all"))) 
         stop("Select only one genetic model when more than 2000 SNPs are analyzed")
-
  
     cl <- match.call()
     mf <- match.call(expand.dots = FALSE)
     m0 <- match(c("formula", "data"), names(mf), 0)
     mf <- mf[c(1, m0)]
+
+#
+# aceptar respuesta sin formula
+#    
+	if( length(grep("~",mf[[2]]))==0){
+		formula<-as.formula(paste(mf[[2]],"~1",sep=""))
+		formula.1<- list(formula)
+		mode(formula.1)<-"call"
+		mf[2]<-formula.1
+	}
+
     mf[[1]] <- as.name("model.frame")
     mf <- eval(mf, parent.frame())
     mt <- attr(mf, "terms")
@@ -1374,7 +1384,8 @@ extractPval.i<-function (i, x, pos, models)
             tt <- tt[, pos]
             ans <- c(NA, tt[!is.na(tt)])
             if ((length(ans) - 1) < length(models)) 
-                ans <- c(ans, rep(NA, length(models) - 1))
+#                ans <- c(ans, rep(NA, length(models) - 1))
+                ans <- c(ans, rep(NA, length(models) - (length(ans) - 1)))
           }
        }
       else if (!is.na(charmatch("Geno", tt))) 
@@ -1926,6 +1937,50 @@ plot.SNPinteraction<-function(x, main.tit, ...)
 }
 
 
+WGstats<-function(x,pSig=0.000001)
+{
+
+ if (!inherits(x, "WGassociation")) 
+      stop("x must be an object of class 'WGassociation'")
+
+ SNPs<-attr(x,"label.SNPs")
+
+ genes<-attr(x,"gen.info")
+ pvalues<-attr(x,"pvalues")
+
+ nSNPs<-table(genes[,2])
+ chr.l <- names(nSNPs)
+ o<-orderChromosome(chr.l)
+ chr <- chr.l[o]
+ nSNPs.o<-nSNPs[o]
+
+ info<-matrix(NA,nrow=length(chr),ncol=5)
+
+ for (i in 1:length(chr))
+ { 
+  info0<-nSNPs.o[i]
+  temp<-genes[genes[,2]==chr[i],] 
+  aux<-pvalues[dimnames(pvalues)[[1]]%in%temp[,1],]
+  info1<-round((table(aux[,1])/nrow(aux))*100,1)
+  nSig<-sum(aux[,2]<=pSig,na.rm=TRUE)
+  info2<-c(nSig,round((nSig/nrow(aux))*100,1))
+  info[i,]<-c(info0,info1,info2)
+ }
+
+ ans<-data.frame(info)
+ names(ans)<-c("SNPs (n)","Genot error (%)","Monomorphic (%)",
+   "Significant* (n)","(%)")
+ dimnames(ans)[[1]]<-chr
+ 
+ print(ans)
+ 
+ cat("\n *Number of statistically significant associations at level", pSig)
+ cat("\n")
+ invisible(ans)
+}
+
+
+
 
 
 
@@ -1962,7 +2017,9 @@ haplo.interaction <- function(formula, data, SNPs.sel, quantitative = is.quantit
    else 
       stop("formula needs an 'interaction' term")   
    
-   geno<-make.geno(data,SNPs.sel,sep=sep)
+   control.missing<-dimnames(mf)[[1]]
+   geno <- make.geno(data[dimnames(data)[[1]]%in%control.missing,], 
+                   SNPs.sel, sep = sep)
 
    dep <- mf[, 1]
    if (ncol(mf) > 2)
@@ -2299,7 +2356,7 @@ print.haploOut<-function(x, digits = max(3, getOption("digits") - 3), ...)
    cat("-------------------------\n")
    etiq<-dimnames(x[[1]])[[2]]
 
-   if(attr(ans,"quantitative"))
+   if(attr(x,"quantitative"))
     {  
       etiq[2]<-paste(etiq[2],"(dif)")
       etiq[5]<-paste(etiq[5],"(dif)")
