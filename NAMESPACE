@@ -1,0 +1,72 @@
+export(
+association,
+setupSNP,
+snp,
+WGassociation,
+intervals,
+plotMissing,
+getSignificantSNPs, 
+tableHWE,
+Bonferroni.sig,
+haplo.interaction,
+interactionPval,
+additive,
+codominant,
+dominant,
+overdominant,
+recessive,
+int, 
+make.geno,
+WGstats
+)
+
+#exportMethods("intervals")
+importFrom(stats, reorder)
+import("survival")
+
+
+S3method(summary,haplo.glm)
+S3method(summary,setupSNP)
+S3method(summary,snp)
+S3method(summary,WGassociation)
+
+S3method(print,haploOut)
+S3method(print,intervals)
+S3method(print,SNPinteraction)
+S3method(print,snpOut)
+S3method(print,tableHWE)
+S3method(print,WGassociation)
+
+S3method(plot,snp)
+S3method(plot,SNPinteraction)
+S3method(plot,WGassociation)
+
+S3method(reorder,snp)
+
+S3method(intervals,dif)
+S3method(intervals,haplo.glm)
+S3method(intervals,or)
+
+# as.snp 
+# is.Monomorphic
+# is.quantitative
+# is.snp 
+# association.fit
+
+# crea.lab 
+# expandsetupSNP
+# extractPval
+# extractPval.i
+# GenotypeRate
+# haplo.inter.fit
+
+# orderChromosome
+
+# SNPHWE 
+# sortSNPs 
+# table.corner
+# table.interaction 
+# togeno 
+# Table.N.Per
+# Table.mean.se
+

@@ -11,17 +11,17 @@
 
   \code{snp} creates an snp object
 
-  \code{is.snp} returns \code{TRUE} if \code{x} is of class 'snp'
+  \code{is} returns \code{TRUE} if \code{x} is of class 'snp'
 
-  \code{as.snp} attempts to coerce its argument into an object of class 'snp'
+  \code{as} attempts to coerce its argument into an object of class 'snp'
 
-  \code{reorder.snp} change the reference genotype
+  \code{reorder} change the reference genotype
 
-  \code{summary.snp} gives a summary for an object of class 'snp' including genotype
+  \code{summary} gives a summary for an object of class 'snp' including genotype
                      and allele frequencies and an exact thest of Hardy-Weinberg 
                      equilibrium 
 
-  \code{plot.snp}    gives a summary for an object of class 'snp' including genotype
+  \code{plot}    gives a summary for an object of class 'snp' including genotype
                      and allele frequencies and an exact thest of Hardy-Weinberg 
                      equilibrium in a plot. Barplot or pie are allowed
 }
@@ -34,11 +34,6 @@
  
   as.snp(x, ...)
 
-  reorder.snp(x, ref="common", ...)
-
-  summary.snp(object, print.out=TRUE, ...)
-
-  plot.snp(x, type=barplot, label, ...)
 }
 
 \arguments{
@@ -56,11 +51,6 @@
   \item{allow.partial.missing}{logical indicating whether one allele is
           permitted to be missing.  When set to 'FALSE' both alleles
           are set to 'NA' when either is missing.}
-  \item{ref}{how should genotypes within an individual be reordered. See 'reorder' argument}
-  \item{object}{and object of class 'snp'}
-  \item{print.out}{if the summary printed?. The default is TRUE}
-  \item{type}{type of plot. The default is 'barplot', other R graphics are allowed (for instance 'pie')}
-  \item{label}{optional argument for indicating the desired label of SNP in the plot. }
   \item{...}{optional arguments}
 }
 \details{

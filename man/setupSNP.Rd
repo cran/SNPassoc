@@ -14,9 +14,8 @@
 }
 
 \usage{
-setupSNP(data, colSNPs, sort = FALSE, info, sep = "/")
+setupSNP(data, colSNPs, sort = FALSE, info, sep = "/", ...)
 
-summary.setupSNP(object, ...)
 }
 
 \arguments{
@@ -27,7 +26,6 @@ summary.setupSNP(object, ...)
        about the SNPs regarding their genomic position and the gene where 
        they are located}
   \item{sep}{character separator used to divide alleles in the genotypes}
-  \item{object}{an object of class 'setupSNP'}
   \item{...}{optional arguments}
 }
 \value{

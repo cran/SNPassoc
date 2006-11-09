@@ -27,8 +27,6 @@ extractPval(x)
 extractPval.i(i,x,pos,models)
 SNPHWE(x)
 GenotypeRate(x)
-intervals.dif(o, level, x.b, var, pval=TRUE, ...)
-intervals.or(o, level, x.b, var, ...)
 haplo.inter.fit(geno, var2, dep, adj = NULL, fam, 
           haplo.freq.min, ...)
 crea.lab(x,pos.ini,cex,dist)
