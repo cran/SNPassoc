@@ -9,8 +9,9 @@
 \usage{
 plot.WGassociation(x, alpha = 0.05, plot.all.SNPs = FALSE, 
   print.label.SNPs = TRUE, cutPval = c(0, 1e-10, 1), whole, 
-  ylim.sup=1e-40,  col.legend = c("red", "gray60"), 
-  sort.chromosome=TRUE, centromere, ...)
+  ylim.sup=ifelse(is.null(attr(x,"fast")),1e-40, 1e-30),  
+  col.legend = c("red", "gray60"), sort.chromosome=TRUE, 
+  centromere, ...)
 }
 
 \arguments{

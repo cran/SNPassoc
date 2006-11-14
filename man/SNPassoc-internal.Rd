@@ -17,6 +17,10 @@
 \alias{orderChromosome}
 \alias{togeno}
 \alias{expandsetupSNP}
+\alias{pvalTest}
+\alias{modelTest}
+\alias{assoc}
+
 
 \title{Internal SNPstat functions}
 \description{Internal SNPassoc functions}
@@ -33,6 +37,10 @@ crea.lab(x,pos.ini,cex,dist)
 orderChromosome(x)
 togeno(f,sep=sep,lab=lab)
 expandsetupSNP(o)
+pvalTest(dataX,Y,quantitative,type,genotypingRate)
+modelTest(X,Y,quantitative,type,genotypingRate)
+assoc(y,x,test="lrt",quantitative)
+
 }
 
 \details{These are not to be called by the user}

@@ -281,12 +281,11 @@ crea.lab<-function (x, pos.ini, cex, dist)
 }
 
 
-codominant<-function(o)
+codominant<- function(o)
 {
-    if (!inherits(o, "snp")) 
-        stop("o should be a 'snp' object")
-    else 
-       factor(o)
+ if (length(unique(o[!is.na(o)]))>3)
+    stop("variable should have 3 levels max")
+ else factor(o)
 }
 
 
@@ -298,8 +297,7 @@ dominant<-function (o)
     o[o == levels(o)[3]] <- levels(o)[2]
     levels(o)[2] <- paste(levels(o)[2:3], collapse = "-")
    } 
- 
-  factor(o)
+   factor(o)
 }
 
 
@@ -425,7 +423,7 @@ setupSNP<-function(data, colSNPs, sort=FALSE, info, sep="/", ...)
 summary.setupSNP<-function(object,...)
  {
   if (!inherits(object, "setupSNP")) 
-        stop("snp must be an object of class 'setupSNP'")
+        stop("object must be an object of class 'setupSNP'")
   colSNPs<-attr(object,"colSNPs")
   temp<-lapply(object[,colSNPs],expandsetupSNP)
 
@@ -1262,7 +1260,7 @@ WGassociation<-function (formula, data, model=c("all"), quantitative = is.quanti
      stop("data must be an object of class 'setupSNP'")
 
     if (length(attr(data,"colSNPs")) > 2000 & (length(model) > 1 | any(model%in%"all"))) 
-        stop("Select only one genetic model when more than 2000 SNPs are analyzed")
+        stop("Select only one genetic model when more than 2000 SNPs are analyzed \n or use 'fastWGassociation' function")
  
     cl <- match.call()
     mf <- match.call(expand.dots = FALSE)
@@ -1452,25 +1450,29 @@ print.WGassociation<- function (x, digits = 5, ...)
 
 
 
-summary.WGassociation<-function(object, ...)
- {
-   x<-object
-   if(!inherits(x,"WGassociation"))
-     stop("x must be an object of class 'WGassociation'")
-   nn<-names(x)
-   attr(x,"label.SNPs")<-attr(x,"models")<-attr(x,"quantitative")<-
-   attr(x,"pvalues")<-attr(x,"gen.info")<-attr(x,"whole")<-
-   attr(x,"colSNPs")<-NULL
-   class(x)<-NULL
-   print(x,na.print="",...)    
-   invisible(x)
- } 
+summary.WGassociation<-function (object, ...) 
+{
+    x <- object
+    if (!inherits(x, "WGassociation")) 
+        stop("x must be an object of class 'WGassociation'")
+
+    if (!is.null(attr(x,"fast")))
+       stop("\n summary is implemented only for 'WGassociation' function")
+    nn <- names(x)
+    attr(x, "label.SNPs") <- attr(x, "models") <- attr(x, "quantitative") <- attr(x, 
+        "pvalues") <- attr(x, "gen.info") <- attr(x, "whole") <- attr(x, 
+        "colSNPs") <- NULL
+    class(x) <- NULL
+    print(x, na.print = "", ...)
+    invisible(x)
+}
+
 
 
 "plot.WGassociation" <-
 function (x, alpha = 0.05, plot.all.SNPs = FALSE, print.label.SNPs = TRUE, 
-    cutPval = c(0, 1e-10, 1), whole, ylim.sup = 1e-40, col.legend = c("red", 
-        "gray60"), sort.chromosome=TRUE, centromere, ...) 
+    cutPval = c(0, 1e-10, 1), whole, ylim.sup = ifelse(is.null(attr(x,"fast")),1e-40,
+    1e-30), col.legend = c("red","gray60"), sort.chromosome=TRUE, centromere, ...) 
 {
     if (!inherits(x, "WGassociation")) 
         stop("x must be an object of class 'WGassociation'")
@@ -1606,7 +1608,7 @@ function (x, alpha = 0.05, plot.all.SNPs = FALSE, print.label.SNPs = TRUE,
         legend(1.2, 1.2, levels(cut(runif(100), cutPval)), col = col.legend, 
             pt.bg = col.legend, pch = rep(22, 4), horiz = TRUE, 
             cex = 1, bty = "n", pt.cex = 1.6, yjust = 0.5)
-        max.y <- min(pval[, 2], na.rm = TRUE)
+        max.y <- min(pval[pval[,2]>0, 2], na.rm = TRUE)
         if (ylim.sup > max.y) 
             ylim.sup <- max.y
         for (i in 1:n.chr) {
@@ -1944,10 +1946,10 @@ WGstats<-function(x,pSig=0.000001)
       stop("x must be an object of class 'WGassociation'")
 
  SNPs<-attr(x,"label.SNPs")
-
  genes<-attr(x,"gen.info")
+ if (is.null(genes))
+      stop("only implemented when chromosome information is available") 
  pvalues<-attr(x,"pvalues")
-
  nSNPs<-table(genes[,2])
  chr.l <- names(nSNPs)
  o<-orderChromosome(chr.l)
@@ -1985,9 +1987,12 @@ WGstats<-function(x,pSig=0.000001)
 
 
 haplo.interaction <- function(formula, data, SNPs.sel, quantitative = is.quantitative(formula, data), 
-             haplo.freq.min=0.05, sep="/", ...)
+             haplo.freq.min=0.05,...)
 
 {
+   if (!inherits(data, "setupSNP")) 
+        stop("data must be an object of class 'setupSNP'")
+ 
    control.SNPs<-sum(!is.na(match(names(data),SNPs.sel)))
    if (control.SNPs!=length(SNPs.sel))
      stop("Some of the SNPs selected are not in the data set")
@@ -2019,7 +2024,7 @@ haplo.interaction <- function(formula, data, SNPs.sel, quantitative = is.quantit
    
    control.missing<-dimnames(mf)[[1]]
    geno <- make.geno(data[dimnames(data)[[1]]%in%control.missing,], 
-                   SNPs.sel, sep = sep)
+                   SNPs.sel)
 
    dep <- mf[, 1]
    if (ncol(mf) > 2)
@@ -2323,12 +2328,15 @@ haplo.inter.fit <- function(geno, var2, dep, adj = NULL, fam, haplo.freq.min, ..
 }
 
 
-make.geno<- function (data, SNPs.sel, sep = "/") 
+make.geno<- function (data, SNPs.sel) 
 {
-    ans<-togeno(data[,SNPs.sel[1]],sep=sep,lab=SNPs.sel[1])
+    if (!inherits(data, "setupSNP")) 
+        stop("data must be an object of class 'setupSNP'")
+
+    ans<-togeno(data[,SNPs.sel[1]],sep="/",lab=SNPs.sel[1])
     for (i in 2:length(SNPs.sel))
      {
-      ans.i<-togeno(data[,SNPs.sel[i]],sep=sep,lab=SNPs.sel[i])
+      ans.i<-togeno(data[,SNPs.sel[i]],sep="/",lab=SNPs.sel[i])
       ans<-cbind(ans,ans.i)
      }
     geno<-setupGeno(ans)
@@ -2735,86 +2743,114 @@ UseMethod("intervals")
 intervals.haplo.glm <-
 function (o, level = 0.95, sign = 1, FUN = exp, ...) 
 {
-    if (o$family$family!="binomial")
-           FUN=function(x) x
+    if (o$family$family != "binomial") 
+        FUN = function(x) x
     z <- abs(qnorm((1 - level)/2))
     co <- summary(o)$coef
-
-    control<-gsub("geno.","",dimnames(summary(o)$coef)[[1]])
-
-    nombres<-rep(NA,length(control))
-    freqs<- rep(NA,length(control))
-
-    for (i in 1:length(control))
-     {
-      if (control[i]!="rare" & control[i]!="(Intercept)")
-       {
-        nombres[i]<-paste(o$haplo.unique[as.numeric(control[i]),],collapse="")
-        freqs[i]<-o$haplo.freq[as.numeric(control[i])]
-       } 
-      else if (control[i]=="(Intercept)")
-       {
-        nombres[i]<-"(Intercept)"
-        freqs[i]<- -1  
-       }
-      else
-       {
-        nombres[i]<-"rare" 
-        freqs[i]<-sum(o$haplo.freq[o$haplo.rare]) 
-       }
-     }
+    control0 <- gsub("geno.", "", dimnames(summary(o)$coef)[[1]])
+    control.geno<-grep("geno.", dimnames(summary(o)$coef)[[1]])
+    control<-control0[c(1,control.geno)]
+    n.control<-length(control)
+    nombres <- rep(NA, n.control)
+    freqs <- rep(NA, n.control)
+    for (i in 1:n.control) {
+        if (control[i] != "rare" & control[i] != "(Intercept)") {
+            nombres[i] <- paste(o$haplo.unique[as.numeric(control[i]), 
+                ], collapse = "")
+            freqs[i] <- o$haplo.freq[as.numeric(control[i])]
+        }
+        else if (control[i] == "(Intercept)") {
+            nombres[i] <- "(Intercept)"
+            freqs[i] <- -1
+        }
+        else {
+            nombres[i] <- "rare"
+            freqs[i] <- sum(o$haplo.freq[o$haplo.rare])
+        }
+    }
 
     or <- FUN(co[, 1] * sign)
     li <- FUN(co[, 1] * sign - z * co[, 2])
     ls <- FUN(co[, 1] * sign + z * co[, 2])
-    r <- cbind(freqs,or, li, ls, co[, 4])
 
-    if (o$family$family!="binomial")
-       dimnames(r) <- list(nombres, c("freq", "diff", paste(level * 
-        100, "%", sep = ""), "C.I.", "      P-val"))
+
+# Add the reference haplotype (modified JRG 12-Nov-06
+    if (o$family$family != "binomial") 
+      or<-c(or[1],or[1],or[-1])
     else
-       dimnames(r) <- list(nombres, c("freq", "or", paste(level * 
+      or<-c(or[1],1,or[-1])
+    li<-c(li[1],NA,li[-1])
+    ls<-c(ls[1],NA,ls[-1])
+    pvals<-co[,4]
+    pvals<-c(pvals[1],NA,pvals[-1])
+    nombre.ref<-paste(o$haplo.unique[o$haplo.base,], collapse = "")
+    nombre.cov<-dimnames(summary(o)$coef)[[1]][-c(1:n.control)]
+    nombres<-c(nombres[1],nombre.ref,nombres[-1],nombre.cov)
+    ncov<-length(nombre.cov)
+    freqs<-c(freqs[1],o$haplo.freq[o$haplo.base],freqs[-1],rep(NA,ncov)) 
+    names(freqs)<-names(or)
+#
+    
+    r <- cbind(freqs, or, li, ls, pvals)
+
+    if (o$family$family != "binomial") 
+        dimnames(r) <- list(nombres, c("freq", "diff", paste(level * 
+            100, "%", sep = ""), "C.I.", "      P-val"))
+    else dimnames(r) <- list(nombres, c("freq", "or", paste(level * 
         100, "%", sep = ""), "C.I.", "      P-val"))
+
     class(r) <- "intervals"
     r
 }
 
 
-
 print.intervals <-
-function(x, len = 6, d = 2, exclude.intercept=TRUE, pval=TRUE, ...)
+function (x, len = 6, d = 2, exclude.intercept = TRUE, pval = TRUE, 
+    ...) 
 {
-      n <- x
-	dd <- dim(n)
-	mx <- 10^(len-(d+1))
-	n[n > mx] <- Inf
-	a <- formatC(n, d, len,format="f")
-
-	dim(a) <- dd
-	if(length(dd) == 1){
-		dd<-c(1,dd)
-		dim(a)<-dd
-		lab<-" "
-	}
-	else	
-      lab <- dimnames(n)[[1]]
-
-	if(!pval){
-		mx <- max(nchar(lab)) + 1
-		cat(paste(rep(" ",mx),collapse=""),paste(" ",dimnames(n)[[2]]),"\n")
-		for(i in (1+exclude.intercept):dd[1]) {
-			lab[i] <- paste(c(rep(" ", mx - nchar(lab[i])), lab[i]),collapse = "")
-			cat(lab[i], formatC(n[i, 1], 4, 6, format="f"), a[i, 2], "(", a[i, 3], "-", a[i, 4], ") \n")
-		}
-	} else {
-		mx <- max(nchar(lab)) + 1
-		cat(paste(rep(" ",mx),collapse=""),paste(" ",dimnames(n)[[2]]),"\n")
-		for(i in (1+exclude.intercept):dd[1]) {
-			lab[i] <- paste(c(rep(" ", mx - nchar(lab[i])), lab[i]),collapse = "")
-			cat(lab[i], formatC(n[i, 1], 4, 6, format="f"), a[i, 2], "(", a[i, 3], "-", a[i, 4], ") ",formatC(n[i,5], 4, 6,format="f"),"\n")
-		}
-	}
+    n <- x
+    dd <- dim(n)
+    mx <- 10^(len - (d + 1))
+    n[n > mx] <- Inf
+    a <- formatC(n, d, len, format = "f")
+    dim(a) <- dd
+    if (length(dd) == 1) {
+        dd <- c(1, dd)
+        dim(a) <- dd
+        lab <- " "
+    }
+    else lab <- dimnames(n)[[1]]
+    if (!pval) {
+        mx <- max(nchar(lab)) + 1
+        cat(paste(rep(" ", mx), collapse = ""), paste(" ", dimnames(n)[[2]]), 
+            "\n")
+        for (i in (1 + exclude.intercept):dd[1]) {
+            lab[i] <- paste(c(rep(" ", mx - nchar(lab[i])), lab[i]), 
+                collapse = "")
+            if (i == (1 + exclude.intercept)) 
+                cat(lab[i], formatC(n[i, 1], 4, 6, format = "f"), 
+                  a[i, 2], "Reference haplotype", "\n")
+            else cat(lab[i], ifelse(is.na(n[i, 1]),"      ",formatC(n[i, 1], 4, 6, format = "f")), 
+                a[i, 2], "(", a[i, 3], "-", a[i, 4], ") \n")
+        }
+    }
+    else {
+        mx <- max(nchar(lab)) + 1
+        cat(paste(rep(" ", mx), collapse = ""), paste(" ", dimnames(n)[[2]]), 
+            "\n")
+        for (i in (1 + exclude.intercept):dd[1]) {
+            lab[i] <- paste(c(rep(" ", mx - nchar(lab[i])), lab[i]), 
+                collapse = "")
+            if (i == (1 + exclude.intercept)) 
+                cat(lab[i], formatC(n[i, 1], 4, 6, format = "f"), 
+                  a[i, 2], "Reference haplotype", "\n")
+            else cat(lab[i], ifelse(is.na(n[i, 1]),"      ",formatC(n[i, 1], 4, 6, format = "f")), 
+                a[i, 2], "(", a[i, 3], "-", a[i, 4], ") ", formatC(n[i, 
+                  5], 4, 6, format = "f"), "\n")
+        }
+    }
 }
+
 
 summary.haplo.glm <- function(object, ...)
  {
@@ -2979,4 +3015,176 @@ orderChromosome<-function(x)
    
 
   }
+
+
+####################################################################
+####################################################################
+#
+#   WGassociation
+#
+####################################################################
+####################################################################
+
+
+scanWGassociation<-function (formula, data, model = c("all"), quantitative = is.quantitative(formula, 
+    data), genotypingRate = 80) 
+{
+    if (!inherits(data, "setupSNP")) 
+        stop("data must be an object of class 'setupSNP'")
+    cl <- match.call()
+    mf <- match.call(expand.dots = FALSE)
+    m0 <- match(c("formula", "data"), names(mf), 0)
+    mf <- mf[c(1, m0)]
+    if (length(grep("~", mf[[2]])) == 0) {
+        formula <- as.formula(paste(mf[[2]], "~1", sep = ""))
+        formula.1 <- list(formula)
+        mode(formula.1) <- "call"
+        mf[2] <- formula.1
+    }
+    mf[[1]] <- as.name("model.frame")
+    mf <- eval(mf, parent.frame())
+    varDep<-mf[,1]
+    control.missing<-dimnames(mf)[[1]]
+    mt <- attr(mf, "terms")
+    temp0 <- as.character(mt)
+
+    ptm<-proc.time()
+
+# Por ahora no
+#    adj <- paste(temp0[2], temp0[1], temp0[3])
+    if (temp0[3]!=1)
+      stop("adjusted analysis is not yet implemented. Try 'WGassociation'")
+
+    cat("Be patient. The program is computing ... \n")
+
+    Terms <- if (missing(data)) 
+        terms(formula)
+    else terms(formula, data = data)
+    ord <- attr(Terms, "order")
+    if (any(ord > 1)) 
+        stop("interaction term is not implemented")
+
+    colSNPs <- attr(data, "colSNPs")
+    if (is.vector(colSNPs) & length(colSNPs) > 1) 
+        dataSNPs <- data[control.missing, colSNPs]
+    else stop("data should have an attribute called 'colSNPs'. Try again 'setupSNP' function")
+
+    type <- charmatch(model, c("codominant", "dominant", "recessive", 
+        "overdominant", "log-additive", "all"))
+    type <- sort(type)
+    if (any(type %in% 6)) 
+        type <- 1:6
+    if (length(type)==0) 
+        stop("model must be 'codominant','dominant','recessive','overdominant', \n                     'log-additive', 'all' or any combination of them")
+
+    SNPs <- attr(data, "label.SNPs")
+
+    out <-data.frame(pvalTest(dataSNPs, Y=varDep, quantitative=quantitative, type=type,
+                      genotypingRate = genotypingRate ))
+    lab.model <- c("codominant","dominant","recessive","overdominant","log-additive")
+    if (max(type)==6)
+     names(out)<-c("comments",lab.model)
+    else
+     names(out)<-c("comments",lab.model[type])
+ 
+    for (i in 2:ncol(out)) out[, i] <- as.numeric(as.character(out[,i]))
+
+    cost<-proc.time()-ptm
+    cat("The program took", round(cost[3],2), "seconds \n")
+     
+    attr(out, "label.SNPs") <- attr(data, "label.SNPs")
+    attr(out, "models") <- type
+    attr(out, "quantitative") <- quantitative
+    attr(out, "pvalues") <- out
+    attr(out, "gen.info") <- attr(data, "gen.info")
+    attr(out, "whole") <- attr(data, "whole")
+    attr(out, "colSNPs") <- attr(data, "colSNPs")
+    attr(out, "fast")<-TRUE
+    class(out) <- c("WGassociation","data.frame")
+    out
+}
+
+
+pvalTest<-function(dataX,Y,quantitative,type,genotypingRate)
+ {
+  pvalues<-t(data.frame(lapply(dataX,FUN=modelTest,Y=Y,
+               quantitative=quantitative,type=type,
+               genotypingRate = genotypingRate )))
+  pvalues
+ }
+
+
+modelTest<-function(X,Y,quantitative,type,genotypingRate)
+{
+  control<-ifelse(6%in%type,5,length(type)) 
+  controlGeno <- GenotypeRate(X)
+  if (genotypingRate > controlGeno)
+   {
+    ans<-c("Genot error",rep(NA,control))
+   }
+  else
+   {
+    if (is.Monomorphic(X))
+      ans<-c("Monomorphic",rep(NA,control))
+    else { 
+     ans<-NA  
+     if (1%in%type | 6%in%type) { 
+       mco<-assoc(Y,codominant(X),quantitative=quantitative) 
+       ans<-c(ans,mco)
+     }
+     if (2%in%type | 6%in%type) {
+       mdo<-assoc(Y,dominant(X),quantitative=quantitative) 
+       ans<-c(ans,mdo)
+     }
+     if (3%in%type | 6%in%type) {
+       mre<-assoc(Y,recessive(X),quantitative=quantitative) 
+       ans<-c(ans,mre)
+     }
+     if (4%in%type | 6%in%type) {
+       mov<-assoc(Y,overdominant(X),quantitative=quantitative) 
+       ans<-c(ans,mov)
+     }
+     if (5%in%type | 6%in%type) {
+      mad<-assoc(Y,additive(X),quantitative=quantitative) 
+      ans<-c(ans,mad)
+     }
+    }
+   }
+ ans  
+}
+
+
+
+assoc<-function(y,x,test="lrt",quantitative)
+ {
+ lrt<-function(m) 
+  {
+   if (m$family$family=="gaussian") {
+    df1<-m$df.null
+    df2<-m$df.residual
+    df<-df1-df2 
+    ans<-1-pchisq(((m$null.deviance-m$deviance))/(m$deviance/df2),df)
+   }
+   else {
+    ans<-1-pchisq(m$null.deviance-m$deviance,m$df.null-m$df.residual)
+   }
+   ans 
+  }
+  if (length(levels(x))==1) {
+    pval<-NA
+  }
+  else {
+    if (test=="lrt") {
+     if (quantitative)  
+      pval<-lrt(glm(y~x,family="gaussian"))
+     else  
+      pval<-lrt(glm(y~x,family="binomial"))
+    }
+  }
+  pval
+ }
+ 
+
+
+
 
