@@ -17,7 +17,8 @@ overdominant,
 recessive,
 int, 
 make.geno,
-WGstats
+WGstats,
+scanWGassociation
 )
 
 #exportMethods("intervals")
@@ -69,4 +70,8 @@ S3method(intervals,or)
 # togeno 
 # Table.N.Per
 # Table.mean.se
+
+#pvalTest
+#modelTest
+#assoc
 

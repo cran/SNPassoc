@@ -3,7 +3,7 @@
 \alias{print.WGassociation}
 \alias{summary.WGassociation}
 
-\title{ Whole genome association analysis}
+\title{Whole genome association analysis}
 
 \description{
   This function carries out a whole genome association analysis between the SNPs and
@@ -19,12 +19,13 @@
 }
 
 \arguments{
-  \item{formula}{ a symbolic description of the model to be fited (a formula object) without the SNP. 
+  \item{formula}{either a symbolic description of the model to be fited (a formula object) without the SNP
+                or the name of response variable in the case of fitting single models (e.g. unadjusted models).
                 It might have either a continuous variable (quantitative traits) or a 
                 factor variable (case-control studies) as the response on the left of the \code{~} 
                 operator and terms with additional covariates on the right of the \code{~} operator may be 
                 added to fit an adjusted model (e.g., \code{~}var1+var2+...+varN+SNP). See details}
-  \item{data}{ a required dataframe of class 'setupSNP' containing the variables in the model and the SNPs}
+  \item{data}{a required dataframe of class 'setupSNP' containing the variables in the model and the SNPs}
   \item{model}{a character string specifying the type of genetic model (mode of inheritance) for the SNP. 
                This indicates how the genotypes should be collapsed. Possible
                values are "codominant", "dominant", "recessive", "overdominant", "log-additive" or "all". The default
@@ -57,13 +58,16 @@
   further details
 }
 
-\seealso{ \code{\link{getSignificantSNPs}} \code{\link{association}} 
-     \code{\link{setupSNP}} \code{\link{plot.WGassociation}}}
+\seealso{ \code{\link{scanWGassociation}} \code{\link{getSignificantSNPs}} 
+    \code{\link{association}} \code{\link{setupSNP}} \code{\link{plot.WGassociation}}}
 
 \examples{
 data(SNPs)
 datSNP<-setupSNP(SNPs,6:40,sep="")
 ansAll<-WGassociation(protein~1,data=datSNP,model="all")
+
+# In that case the formula is not required. You can also write:
+# ansAll<-WGassociation(protein,data=datSNP,model="all")
 
 
 #only codominant and log-additive
@@ -88,9 +92,8 @@ plot(ansAll)
 #
 # Whole genome analysis
 #
+
 data(HapMap)
-
-
 # Next steps may be very time consuming. So they are not executed
 
 #myDat<-setupSNP(HapMap, colSNPs=3:9809, sort = TRUE,
