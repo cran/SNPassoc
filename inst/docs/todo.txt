@@ -1,0 +1,17 @@
+- Documentation
+  	follow R etiquete
+
+- plot.setupSNP
+ 	could plot LD
+
+- haplo 
+	calls haplo.glm or haplo.interaction and prints nice 
+
+- Survival as response
+
+- Permutation p values
+
+- Keep betas and standard errors from models and use them for print, summary & plots
+
+- [.WGassociation
+  si se pasan columnas, interpretar como modelos y seleccionarlos de snpOut (tablas OR) 

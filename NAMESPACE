@@ -1,52 +1,80 @@
 export(
-association,
-setupSNP,
 snp,
-WGassociation,
-intervals,
+setupSNP,
 plotMissing,
-getSignificantSNPs, 
 tableHWE,
+WGstats,
+WGassociation,
+scanWGassociation,
+getSignificantSNPs, 
 Bonferroni.sig,
-haplo.interaction,
-interactionPval,
+association,
 additive,
 codominant,
 dominant,
 overdominant,
 recessive,
+pvalues,
+intervals,
 int, 
+interactionPval,
 make.geno,
-WGstats,
-scanWGassociation
+haplo.interaction
 )
 
-#exportMethods("intervals")
-importFrom(stats, reorder)
 import("survival")
+importFrom(stats, reorder)
 
 
 S3method(summary,haplo.glm)
-S3method(summary,setupSNP)
-S3method(summary,snp)
-S3method(summary,WGassociation)
+S3method(intervals,haplo.glm)
+S3method(intervals,dif)
+S3method(intervals,or)
 
 S3method(print,haploOut)
 S3method(print,intervals)
-S3method(print,SNPinteraction)
 S3method(print,snpOut)
 S3method(print,tableHWE)
-S3method(print,WGassociation)
 
+S3method(codominant,default)
+S3method(dominant,default)
+S3method(recessive,default)
+S3method(overdominant,default)
+S3method(additive,default)
+
+S3method(additive,snp)	
 S3method(plot,snp)
-S3method(plot,SNPinteraction)
-S3method(plot,WGassociation)
-
 S3method(reorder,snp)
+S3method(summary,snp)
 
-S3method(intervals,dif)
-S3method(intervals,haplo.glm)
-S3method(intervals,or)
+S3method(plot,SNPinteraction)
+S3method(print,SNPinteraction)
+
+S3method(summary,setupSNP)
+S3method("[",setupSNP)
+S3method("[[<-",setupSNP)
+S3method("[<-",setupSNP)
+S3method("$<-",setupSNP)
+S3method(labels,setupSNP)
+S3method(plot,setupSNP)
+
+
+S3method(summary,WGassociation)
+S3method(print,WGassociation)
+S3method(plot,WGassociation)
+S3method(pvalues,WGassociation)
+S3method(codominant,WGassociation)
+S3method(dominant,WGassociation)
+S3method(recessive,WGassociation)
+S3method(overdominant,WGassociation)
+S3method(additive,WGassociation)
+S3method("[",WGassociation)
+S3method(c,WGassociation)
+
+S3method(labels,WGassociation)
+
+##################
+# hidden functions
 
 # as.snp 
 # is.Monomorphic
@@ -71,7 +99,8 @@ S3method(intervals,or)
 # Table.N.Per
 # Table.mean.se
 
-#pvalTest
-#modelTest
-#assoc
+# pvalTest
+# modelTest
+# assoc
+
 

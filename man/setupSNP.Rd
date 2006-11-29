@@ -1,6 +1,12 @@
 \name{setupSNP}
 \alias{setupSNP}
 \alias{summary.setupSNP}
+\alias{plot.setupSNP}
+\alias{[.setupSNP}
+\alias{[[<-.setupSNP}
+\alias{[<-.setupSNP}
+\alias{$<-.setupSNP} 
+\alias{labels.setupSNP}
 
 \title{Convert columns in a dataframe to class 'snp'}
 
@@ -15,7 +21,6 @@
 
 \usage{
 setupSNP(data, colSNPs, sort = FALSE, info, sep = "/", ...)
-
 }
 
 \arguments{
@@ -40,12 +45,16 @@ setupSNP(data, colSNPs, sort = FALSE, info, sep = "/", ...)
  data(SNPs)
  myDat<-setupSNP(SNPs,6:40,sep="")
 
+
 #sorted SNPs and having genomic information
  data(SNPs.info.pos)
  myDat.o<-setupSNP(SNPs,6:40,sep="",sort=TRUE, info=SNPs.info.pos)
 
 # summary
  summary(myDat.o)
+
+# plot one SNP
+  plot(myDat,which=2)
 
 }
 \keyword{utilities}

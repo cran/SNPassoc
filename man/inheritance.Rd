@@ -7,7 +7,7 @@
 \alias{overdominant}
 \alias{additive}
 
-\title{Collapsing genotypes into two categories depending on a given genetic mode of inheritance}
+\title{Collapsing (or recoding) genotypes into different categories (generally two) depending on a given genetic mode of inheritance}
 \description{codominant function recodifies a variable having genotypes depending on the allelic frequency
              in descending order. \cr
              

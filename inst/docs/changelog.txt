@@ -1,0 +1,22 @@
+v1.3  
+2006-11-27
+- snp, summary.snp and expandsetupSNP fixed to deal with SNP with 100% missing information
+
+2006-11-26
+- manual for WGstats moved to WGassociation
+- summary.GWassociation (previous WGstats) fixed
+
+2006-11-25
+- interactionPval now accepts only response and asumes formula response~1
+- summary.WGassociation and WGstats swapped
+- summary.WGassociation generates output even if no info is supplied (whole dataset)
+
+2006-11-23
+- added methods for extraction and modification of setupSNP and WGassociation objects 
+- genetic model functions generic
+	-methods: default: recode (accepts snp, numeric, factor or character max 3 values)
+		  WGassociation: extracts pvalues for that model
+
+
+
+
