@@ -1,7 +1,17 @@
 \name{WGassociation}
 \alias{WGassociation}
+\alias{WGstats}
 \alias{print.WGassociation}
 \alias{summary.WGassociation}
+\alias{labels.WGassociation}
+\alias{pvalues}
+\alias{pvalues.WGassociation}
+\alias{codominant.WGassociation}
+\alias{dominant.WGassociation}
+\alias{recessive.WGassociation}
+\alias{overdominant.WGassociation}
+\alias{additive.WGassociation}
+\alias{[.WGassociation}
 
 \title{Whole genome association analysis}
 
@@ -50,16 +60,27 @@
 \value{
   An object of class 'WGassociation'. 
 
-  The functions 'print' and 'summary' are used to obtain and print a summary of the results. The 
-  p values are saved in the attribute 'pvalues' as a matrix. They may be obtained using attr(,"pvalues") 
-  (see examples). The first column indicates whether a problem with genotyping is present.
+  'summary' returns a summary table by groups defined in info (genes/chromosomes).
 
-  The function 'plot' is used to obtain a plot of p values in the -log scale. See plot.WGassociation for
-  further details
+  'WGstats' returns a detailed output, similar to the produced by \code{\link{association}}.
+
+  'pvalues' and 'print' return a table of p-values for each genetic model for each SNP.
+  The first column indicates whether a problem with genotyping is present.
+
+  'plot' produces a plot of p values in the -log scale. See \code{\link{plot.WGassociation}} for
+  further details.
+
+  'labels' returns the names of the SNPs analyzed.
+
+  The functions 'codominat', 'dominant', 'recessive', 'overdominant' and 'additive'
+  are used to obtain the p values under these genetic models.
+
+  See examples for further illustration about all previous issues. 
+
 }
 
 \seealso{ \code{\link{scanWGassociation}} \code{\link{getSignificantSNPs}} 
-    \code{\link{association}} \code{\link{setupSNP}} \code{\link{plot.WGassociation}}}
+    \code{\link{association}} \code{\link{WGstats}} \code{\link{setupSNP}} \code{\link{plot.WGassociation}}}
 
 \examples{
 data(SNPs)
@@ -78,12 +99,25 @@ print(ansAll)
 print(ansCoAd)
 
 #for obtaining a matrix with the p palues
-pvalAll<-attr(ansAll,"pvalues")
-pvalCoAd<-attr(ansCoAd,"pvalues")
+pvalAll<-pvalues(ansAll)
+pvalCoAd<-pvalues(ansCoAd)
 
-#for a big summary
+# when all models are fitted and we are interested in obtaining p values for different genetic models
+
+# codominant model
+pvalCod<-codominant(ansAll)
+
+# recessive model
+pvalRec<-recessive(ansAll)
+
+# and the same for additive, dominant or overdominant
+
+
+#summary
 summary(ansAll)
-summary(ansCoAd)
+
+#for a detailed report
+WGstats(ansAll)
 
 #for plotting the p values
 plot(ansAll)
@@ -103,10 +137,9 @@ data(HapMap)
 
 # However, the results are saved in the object "resHapMap"
 # to illustrate print, summary and plot functions
-print(resHapMap)
 summary(resHapMap)
 plot(resHapMap)
-
+print(resHapMap)
 
 }
 

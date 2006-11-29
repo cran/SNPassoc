@@ -14,12 +14,17 @@
 \alias{table.corner}
 \alias{table.interaction}
 \alias{crea.lab}
-\alias{orderChromosome}
 \alias{togeno}
+\alias{orderChromosome}
 \alias{expandsetupSNP}
 \alias{pvalTest}
 \alias{modelTest}
 \alias{assoc}
+\alias{codominant.default}
+\alias{dominant.default}
+\alias{recessive.default}
+\alias{overdominant.default}
+\alias{additive.default}
 
 
 \title{Internal SNPstat functions}
@@ -40,6 +45,11 @@ expandsetupSNP(o)
 pvalTest(dataX,Y,quantitative,type,genotypingRate)
 modelTest(X,Y,quantitative,type,genotypingRate)
 assoc(y,x,test="lrt",quantitative)
+codominant.default(o)
+dominant.default(o)
+recessive.default(o)
+overdominant.default(o)
+additive.default(o)
 
 }
 

@@ -5,6 +5,8 @@
 \alias{reorder.snp}
 \alias{summary.snp}
 \alias{plot.snp}
+\alias{additive.snp}
+
 
 \title{SNP object}
 \description{
@@ -34,6 +36,8 @@
  
   as.snp(x, ...)
 
+  additive.snp(o)
+
 }
 
 \arguments{
@@ -51,6 +55,7 @@
   \item{allow.partial.missing}{logical indicating whether one allele is
           permitted to be missing.  When set to 'FALSE' both alleles
           are set to 'NA' when either is missing.}
+  \item{o}{an object of class 'snp' to be coded as a linear covariate: 0,1,2}
   \item{...}{optional arguments}
 }
 \details{
@@ -67,6 +72,8 @@
     as "Allele1<sep>Allele2".  If \code{sep} is a numeric value, it is
     assumed that character locations \code{1:sep} contain allele 1 and
     that remaining locations contain allele 2.
+
+  \code{additive.snp} recodes the SNPs for being analyzed as a linear covariate (codes 0,1,2) 
   
 }
 
