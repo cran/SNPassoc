@@ -26,10 +26,14 @@ make.geno(data, SNPs.sel)
 \seealso{\code{\link{snp}}}
 
 \examples{
-#data(SNPs)
+## Not run:
+data(SNPs)
 # first, we create an object of class 'setupSNP'
-#datSNP<-setupSNP(SNPs,6:40,sep="")
-#geno<-make.geno(datSNP,c("snp10001","snp10002","snp10003"))
+datSNP<-setupSNP(SNPs,6:40,sep="")
+geno<-make.geno(datSNP,c("snp10001","snp10002","snp10003"))
+## End(Not run)
+
+
 }
 
 

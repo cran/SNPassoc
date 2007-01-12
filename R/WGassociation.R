@@ -55,7 +55,7 @@ function (formula, data, model=c("all"), quantitative = is.quantitative(formula,
     type<-sort(type)
 
     if (any(type%in%6))
-      type<-1:6
+      type<-1:5
   
     if(any(is.na(type)))
      stop("model must be 'codominant','dominant','recessive','overdominant', 

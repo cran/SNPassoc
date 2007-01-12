@@ -7,7 +7,7 @@
   each SNP corresponding to likelihood ratio test. 
 }
 \usage{
-scanWGassociation(formula, data, model = c("all"), 
+scanWGassociation(formula, data, model = c("all"), nperm,
    quantitative = is.quantitative(formula, data), genotypingRate = 80)
 }
 \arguments{
@@ -23,6 +23,8 @@ scanWGassociation(formula, data, model = c("all"),
                This indicates how the genotypes should be collapsed. Possible
                values are "codominant", "dominant", "recessive", "overdominant", "log-additive" or "all". The default
                is "all" that fits the 5 possible genetic models. Only the first words are required, e.g "co", "do", etc.}
+  \item{nperm}{number of permutations to simulate the null hypotesis (e.g OR=1), conditioning on the empirical correlation
+               structure. Only required to perform a permutation test. Currently this test is only available for binary traits.}
   \item{quantitative}{logical value indicating whether the phenotype (that which is in the
                       left of the operator ~ in 'formula' argument) is quantitative. The function 
                       'is.quantitative' returns FALSE when the phenotype
@@ -42,14 +44,15 @@ scanWGassociation(formula, data, model = c("all"),
   further details
 }
 \seealso{ \code{\link{WGassociation}} \code{\link{getSignificantSNPs}} 
-    \code{\link{association}} \code{\link{setupSNP}} \code{\link{plot.WGassociation}}}
+    \code{\link{association}} \code{\link{setupSNP}} \code{\link{plot.WGassociation}} 
+    \code{\link{permTest}}}
 
 \examples{
 
 # Next steps may be very time consuming. So they are not executed
 
 #data(HapMap)
-#myDat<-setupSNP(HapMap, colSNPs=3:9809, sort = TRUE,
+#myDat<-setupSNP(HapMap, colSNPs=3:9307, sort = TRUE,
 #   info=HapMap.SNPs.pos, sep="")
 #resHapMap<-scanWGassociation(group~1, data=myDat, model="log")
 
