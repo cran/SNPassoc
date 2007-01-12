@@ -19,7 +19,8 @@ intervals,
 int, 
 interactionPval,
 make.geno,
-haplo.interaction
+haplo.interaction,
+permTest
 )
 
 import("survival")
@@ -72,6 +73,10 @@ S3method("[",WGassociation)
 S3method(c,WGassociation)
 
 S3method(labels,WGassociation)
+
+S3method(print,permTest)
+S3method(plot,permTest)
+
 
 ##################
 # hidden functions
