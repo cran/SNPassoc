@@ -1,3 +1,9 @@
+v1.4-3
+2006-01-22
+- removed the file Makevars.win to ../src 
+- changed SNPassoc.f to be compiled using g77
+- \usage sections for 'SNPassoc-internal' 'plot.WGassociation' and 'snp' have been fixed for S3 methods
+
 v1.4-2
 2006-01-19
 - added the file Makevars.win to ../src 
