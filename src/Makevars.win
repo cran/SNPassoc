@@ -1,4 +1,0 @@
-BUILD=GFORTRAN
-F77=gfortran
-FLIBS=-lgfortran
-EXTRA_LIBS=-lgfortran

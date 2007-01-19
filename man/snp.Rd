@@ -36,7 +36,7 @@
  
   as.snp(x, ...)
 
-  additive.snp(o)
+  \method{additive}{snp}(o)
 
 }
 

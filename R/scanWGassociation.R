@@ -73,7 +73,16 @@ function (formula, data, model = c("all"), nperm, quantitative = is.quantitative
 #        pval
 #      }
 
-      pvalG<-function(x,df) {pchisq(x, df, lower.tail=FALSE)}
+#      pvalG<-function(x,df) {pchisq(x, df, lower.tail=FALSE)}
+
+
+# JRG para controlar los "calling rate" y "monomorphics"
+       pvalG <- function(x, df) {
+           if (x<0)
+             return(x)
+           else
+             return(pchisq(x, df, lower.tail = FALSE))
+        }
 
       varDep<-as.numeric(as.factor(varDep))-1
 
@@ -103,7 +112,7 @@ function (formula, data, model = c("all"), nperm, quantitative = is.quantitative
             as.integer(type[1]),as.integer(genotypingRate),as.integer(as.matrix(aux2)),
             stat=as.double(rep(0,nc-1)),PACKAGE = "SNPassoc")
 
-      pval <- pvalG(out0$stat,ngeno-1)
+      pval <- sapply(out0$stat, pvalG, df=ngeno-1)
   
       out<-data.frame(rep(NA,nc-1),pval)
       out[out[,2]==-1,1]<-"Monomorphic"
@@ -123,7 +132,7 @@ function (formula, data, model = c("all"), nperm, quantitative = is.quantitative
             as.integer(i),as.integer(genotypingRate),as.integer(as.matrix(aux2)),
             stat=as.double(rep(0,nc-1)),PACKAGE = "SNPassoc")
 
-        pval <- pvalG(out0.i$stat,ngeno-1)
+        pval <- sapply(out0.i$stat, pvalG, df=ngeno-1)
         pval[pval==-1 | pval==-2]<-NA
         out<-cbind(out,pval)
        }
