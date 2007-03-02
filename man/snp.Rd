@@ -5,6 +5,9 @@
 \alias{reorder.snp}
 \alias{summary.snp}
 \alias{plot.snp}
+\alias{dominant.snp}
+\alias{codominant.snp}
+\alias{recessive.snp}
 \alias{additive.snp}
 
 

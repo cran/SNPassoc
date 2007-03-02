@@ -114,11 +114,11 @@ association(log(protein)~snp10001*sex+blood.pre, data=datSNP,
           model="codominant")
 
 # Interaction SNP and SNP (codominant and codominant)
-association(log(protein)~snp10001*codominant(snp10002)+blood.pre, 
+association(log(protein)~snp10001*factor(snp10002)+blood.pre, 
           data=datSNP, model="codominant")
 
 # Interaction SNP and SNP (dominant and recessive)
-association(log(protein)~snp10001*recessive(snp100019)+blood.pre, 
+association(log(protein)~snp10001*factor(recessive(snp100019))+blood.pre, 
           data=datSNP, model="dominant")
 
 
