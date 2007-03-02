@@ -2,6 +2,13 @@
 function(x,i,j,  ...){
     if (missing(i)) i<-1:nrow(x)
     if (missing(j)) j<-1:ncol(x)
+
+    if (is.character(i)) i<-(1:nrow(x))[rownames(x)%in%i]
+    if (is.character(j)) i<-(1:ncol(x))[colnames(x)%in%j]
+    
+    if (is.logical(i)) i<-(1:nrow(x))[i]
+    if (is.logical(j)) i<-(1:ncol(x))[j]
+
     if (!(1 %in% j)) j<-c(1,j)
     if (length(j)==1) if(j==1) j<-1:2
     if (any(!(i %in% 1:nrow(x)))) stop("Undefined rows selected")

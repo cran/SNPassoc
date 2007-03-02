@@ -11,6 +11,7 @@ permTest<-function(x,method="minimum",K)
   if (is.na(type.method))
     stop ("\n method should be 'minimum' or 'rtp'")
 
+  w<-options(warn=-1)
 
   if (type.method==1)
    {  
@@ -48,6 +49,8 @@ permTest<-function(x,method="minimum",K)
      ans<-list(rtp=stat,sig=sig,nSNPs=c(valid.SNPs,discarded.SNPs),K=K)
    }
 
+  options(w)
+  
   attr(ans,"method")<-type.method
   class(ans)<-"permTest"
   ans
