@@ -78,7 +78,7 @@ function (formula, data, model = c("all"), nperm, quantitative = is.quantitative
 
 # JRG para controlar los "calling rate" y "monomorphics"
        pvalG <- function(x, df) {
-           if (x<0)
+           if (x<0 | is.na(x))
              return(x)
            else
              return(pchisq(x, df, lower.tail = FALSE))

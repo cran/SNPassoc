@@ -5,7 +5,9 @@ function (o)
   if(length(levels(o))==3)
    {
     o[o == levels(o)[3]] <- levels(o)[1]
+    temp <- levels(o)[2]
     levels(o)[2] <- paste(levels(o)[c(1, 3)], collapse = "-")
+    levels(o)[1] <- temp 
    } 
   else
    {
