@@ -1,3 +1,7 @@
+v1.4-5
+2007-03-20
+- bug fixed in the output labels for overdominant model
+
 v1.4-4
 2007-03-02
 - bug fixed in the function 'intervals.haplo.glm'
