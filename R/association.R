@@ -122,7 +122,8 @@ function (formula, data, model = c("all"), model.interaction = c("codominant"),
         var <- mf[, varPos]
         if (ncol(mf) > 2 & is.null(strats) | ncol(mf) > 3 & !is.null(strats)) {
             adj <- data.frame(mf[, -c(1, varPos, strats)])
-            rownames(adj) <- 1:nrow(mf)
+            if (nrow(adj)>0)
+              rownames(adj) <- 1:nrow(mf)
             variables <- attr(mt, "term.labels")
             varAdj <- variables[-c(varPos - 1, strats - 1)]
         }

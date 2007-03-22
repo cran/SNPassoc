@@ -11,7 +11,7 @@ function (var, dep, adj, quantitative, type, level, genotypingRate=0)
         co<-dom<-co<-dom<-rec<-over<-Ad<-NULL
         dep <- as.factor(dep)
         controlGeno <- ifelse(is.null(levels(var)),0,GenotypeRate(var))
-        if (genotypingRate > controlGeno)
+        if (genotypingRate >= controlGeno)
           {
             res <- c(paste("Genot ", round(controlGeno, 1), "\\%", sep = ""))
           }
@@ -191,7 +191,7 @@ function (var, dep, adj, quantitative, type, level, genotypingRate=0)
     else {    # quantitative trait
         co<-dom<-co<-dom<-rec<-over<-Ad<-NULL 
         controlGeno <- ifelse(is.null(levels(var)),0,GenotypeRate(var))
-        if (genotypingRate > controlGeno)
+        if (genotypingRate >= controlGeno)
           {
             res <- c(paste("Genot ", round(controlGeno, 1), "\\%", sep = ""))
           }
