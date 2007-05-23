@@ -9,6 +9,8 @@
 \alias{codominant.snp}
 \alias{recessive.snp}
 \alias{additive.snp}
+\alias{print.snp}
+\alias{[.snp}
 
 
 \title{SNP object}
@@ -29,6 +31,9 @@
   \code{plot}    gives a summary for an object of class 'snp' including genotype
                      and allele frequencies and an exact thest of Hardy-Weinberg 
                      equilibrium in a plot. Barplot or pie are allowed
+
+  \code{[.snp}   is a copy of [.factor modified to preserve all attributes
+
 }
 \usage{
 
@@ -78,7 +83,15 @@
 
   \code{additive.snp} recodes the SNPs for being analyzed as a linear covariate (codes 0,1,2) 
   
+
 }
+
+\references{
+JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
+SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
+2007;23(5):654-5.
+}
+
 
 \value{
   

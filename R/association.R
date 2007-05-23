@@ -10,6 +10,7 @@ function (formula, data, model = c("all"), model.interaction = c("codominant"),
     mf[[1]] <- as.name("model.frame")
     mf <- eval(mf, parent.frame())
     mt <- attr(mf, "terms")
+    nSubject<-nrow(data)
     control <- unlist(lapply(mf, FUN = is.snp))
     if (sum(control) == 0) {
         stop("a variable of class 'snp' should be included in the model")
@@ -149,21 +150,22 @@ function (formula, data, model = c("all"), model.interaction = c("codominant"),
                 for (i in 1:nstrats) {
                   res[[i]] <- association.fit(var[strats == i], 
                     dep[strats == i], adj, quantitative, type, 
-                    level, genotypingRate)
+                    level, nSubject, genotypingRate)
                 }
             }
             else {
                 for (i in 1:nstrats) {
                   res[[i]] <- association.fit(var[strats == i], 
                     dep[strats == i], data.frame(adj[strats == 
-                      i, ]), quantitative, type, level, genotypingRate)
+                      i, ]), quantitative, type, level, nSubject,
+                       genotypingRate)
                 }
             }
             attr(res, "strata") <- levels(strata.keep)
         }
         else {
             res <- association.fit(var, dep, adj, quantitative, 
-                type, level, genotypingRate)
+                type, level, nSubject, genotypingRate)
         }
         interaction <- FALSE
     }
@@ -176,4 +178,5 @@ function (formula, data, model = c("all"), model.interaction = c("codominant"),
     attr(res, "Interaction") <- interaction
     res
 }
+
 

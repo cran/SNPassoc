@@ -47,6 +47,14 @@
   In that case a plot of p values in the -log sclae is plotted for each SNP and for each chromosome. 
 
 }
+
+\references{
+JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
+SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
+2007;23(5):654-5.
+}
+
+
 \value{
  No return value, just the plot
 }
