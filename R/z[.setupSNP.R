@@ -10,7 +10,7 @@ function(x,i,j,...){
       ik<-ik[!is.na(ik)]
 
       snps<- attr(x, "label.SNPs")[ik]
-      for (l in snps) attr(out[,l],"allele.names")<- attr(x[,l],"allele.names")
+#      for (l in snps) attr(out[,l],"allele.names")<- attr(x[,l],"allele.names")
             
       attr(out, "colSNPs")        <- sort(k)
       attr(out, "label.SNPs")     <- attr(x, "label.SNPs")[ik]

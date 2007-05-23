@@ -75,6 +75,10 @@ association(formula, data, model=c("all"), model.interaction=
 }
 
 \references{
+JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
+SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
+2007;23(5):654-5.
+
 Iniesta R, Guino E, Moreno V. Statistical analysis of genetic polymorphisms in epidemiological studies.
 Gac Sanit. 2005;19(4):333-41.
 

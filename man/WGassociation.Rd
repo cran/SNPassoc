@@ -79,6 +79,13 @@
 
 }
 
+\references{
+JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
+SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
+2007;23(5):654-5.
+}
+
+
 \seealso{ \code{\link{scanWGassociation}} \code{\link{getSignificantSNPs}} 
     \code{\link{association}} \code{\link{WGstats}} \code{\link{setupSNP}} \code{\link{plot.WGassociation}}}
 

@@ -1,6 +1,39 @@
+v1.4-8
+2007-05-21
+- mvtnorm is required (change in DESCRIPTION, NAMESPACE and firstlib.R)
+- added: new generic function maxstat (to compute asymptotic p values for max-statistic) and some methods
+- added: function for inspecting overdispersion due to population substructure (qqpval)
+- added: function for correcting the p values using genomic control (GenomiControl)
+- added: example in the Rd file for odds function
+- added: argument nIndiv in association.fit (to deal with genotypeRate properly). association has also been changed (look for 'nSubject')
+- minor change in the function snp (when snp is applied to an object of class snp)
+- added: reference of SNPassoc to some .Rd files
+
+
+v1.4-7
+
+2007-05-17
+- bug fixed: overdominant returned wrong levels (thanks to Nicholas Orr)
+
+2007-05-02
+- bug fixed: [<-.setupSNP  added any variable as new SNP, but could be a covariate
+- bug fixed: odds returns NA for monomorphic SNPs
+- bug fixed: association.fit detected monomorphic SNPs that were not so
+
+2007-04-02
+-bug fixed: c.WGassociation when more than 2 files were combined
+-bug fixed: [.WGassociation when rows/columns were selected by name wrong selection was done
+-bug fixed: [.WGassociation now also subsets permuted SNPs if available
+-changed: [.setupSNP should be faster and preserve snp attributes
+-changed: glm2 in table.corner updated to avoid warnings if response was factor
+-new function odds to extract odds ratios, 95% CI and p values for a given model from an WGassociation object
+-new function [.snp, version of factor that preserves attributes
+-new function print.snp
+
+
 v1.4-6
 2007-03-22
-- little change in 'association' function to deal with SNP with 0% of genotype rate (e.g. all missing) when ajusted models are fitted
+- change in 'association' function to deal with SNP with 0% of genotype rate (e.g. all missing) when ajusted models are fitted
 
 v1.4-5
 2007-03-20

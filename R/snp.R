@@ -3,7 +3,14 @@ function (x, sep = "/", name.genotypes, reorder="common", remove.spaces = TRUE,
        allow.partial.missing = FALSE) 
 {
 
- if (sum(is.na(x)) == length(x))
+if (is.snp(x))
+ {
+  object<-x
+ }
+
+else
+ { 
+  if (sum(is.na(x)) == length(x))
      {
        object<-rep(NA, length(x))      
        attr(object, "allele.names") <- NULL
@@ -108,9 +115,10 @@ else
    object<-as.factor(x)
    attr(object, "allele.names") <- c("A","B")
    class(object) <- c("snp","factor")
-
+  }
  }
 
 object
+
 }
 

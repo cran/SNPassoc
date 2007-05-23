@@ -43,6 +43,13 @@ scanWGassociation(formula, data, model = c("all"), nperm,
   The function 'plot' is used to obtain a plot of p values in the -log scale. See plot.WGassociation for
   further details
 }
+
+\references{
+JR Gonzalez, L Armengol, X Sole, E Guino, JM Mercader, X Estivill, V Moreno.
+SNPassoc: an R package to perform whole genome association studies. Bioinformatics,
+2007;23(5):654-5.
+}
+
 \seealso{ \code{\link{WGassociation}} \code{\link{getSignificantSNPs}} 
     \code{\link{association}} \code{\link{setupSNP}} \code{\link{plot.WGassociation}} 
     \code{\link{permTest}}}

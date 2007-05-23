@@ -13,6 +13,7 @@ additive,
 codominant,
 dominant,
 overdominant,
+odds, 
 recessive,
 pvalues,
 intervals,
@@ -20,10 +21,14 @@ int,
 interactionPval,
 make.geno,
 haplo.interaction,
-permTest
+permTest,
+qqpval,
+GenomicControl,
+maxstat
 )
 
 import("survival")
+import("mvtnorm")
 importFrom(stats, reorder)
 
 
@@ -51,6 +56,8 @@ S3method(additive,snp)
 S3method(plot,snp)
 S3method(reorder,snp)
 S3method(summary,snp)
+S3method(print,snp)
+S3method("[",snp)
 
 S3method(plot,SNPinteraction)
 S3method(print,SNPinteraction)
@@ -80,6 +87,12 @@ S3method(labels,WGassociation)
 
 S3method(print,permTest)
 S3method(plot,permTest)
+
+S3method(print,maxstat)
+S3method(maxstat,default)
+S3method(maxstat,table)
+S3method(maxstat,setupSNP)
+S3method(maxstat,matrix)
 
 
 ##################

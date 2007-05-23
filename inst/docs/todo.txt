@@ -1,3 +1,8 @@
+Urgente:
+- association should p values for all models even if df (codominant) ==1
+
+
+No tanto:
 - Documentation
   	follow R etiquete
 
@@ -9,9 +14,8 @@
 
 - Survival as response
 
-- Permutation p values
+- tableHWE(x,strata)
+	buscar strata en x
 
-- Keep betas and standard errors from models and use them for print, summary & plots
-
-- [.WGassociation
-  si se pasan columnas, interpretar como modelos y seleccionarlos de snpOut (tablas OR) 
+- summary(setupSNP, strata)
+	HWE en controles

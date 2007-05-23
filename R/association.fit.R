@@ -1,5 +1,5 @@
 `association.fit` <-
-function (var, dep, adj, quantitative, type, level, genotypingRate=0) 
+function (var, dep, adj, quantitative, type, level, nIndiv, genotypingRate=0) 
 {
     if (!quantitative) {
       if (length(unique(dep))==1)
@@ -10,7 +10,7 @@ function (var, dep, adj, quantitative, type, level, genotypingRate=0)
        {
         co<-dom<-co<-dom<-rec<-over<-Ad<-NULL
         dep <- as.factor(dep)
-        controlGeno <- ifelse(is.null(levels(var)),0,GenotypeRate(var))
+        controlGeno <- ifelse(is.null(levels(var)),0,(length(var)/nIndiv)*100)
         if (genotypingRate >= controlGeno)
           {
             res <- c(paste("Genot ", round(controlGeno, 1), "\\%", sep = ""))
@@ -190,7 +190,7 @@ function (var, dep, adj, quantitative, type, level, genotypingRate=0)
     }
     else {    # quantitative trait
         co<-dom<-co<-dom<-rec<-over<-Ad<-NULL 
-        controlGeno <- ifelse(is.null(levels(var)),0,GenotypeRate(var))
+        controlGeno <- ifelse(is.null(levels(var)),0,(length(var)/nIndiv)*100)
         if (genotypingRate >= controlGeno)
           {
             res <- c(paste("Genot ", round(controlGeno, 1), "\\%", sep = ""))
@@ -320,4 +320,5 @@ function (var, dep, adj, quantitative, type, level, genotypingRate=0)
     }
     res
 }
+
 
