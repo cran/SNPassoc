@@ -2,7 +2,6 @@
 \alias{SNPs}
 \alias{SNPs.info.pos}
 
-\non_function{}
 \title{SNPs in a case-control study}
 \usage{data(SNPs)}
 \description{
