@@ -2,7 +2,12 @@
 function (o) 
 {
     x <- summary(o, print.out = FALSE)
-    allele <- rbind(x$allele.names)
+    control<-!is.na(x$allele.freq[,2]) & x$allele.freq[,2]!=0
+    o<-order(x$allele.freq[control,2],decreasing=TRUE)
+
+    allele <- rbind(x$allele.names)[o]
+
+
     alleles <- paste(allele, collapse = "/")
     if (length(allele) == 1) 
         alleles <- c(allele)

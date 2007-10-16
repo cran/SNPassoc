@@ -1,3 +1,11 @@
+
+v1.4-9
+2007-10-16
+- modified: expandsetupSNP.R to show alleles sorted by frequency when summary of an object of class 'setupSNP' is executed
+- changed: e-mail address of the maintainer
+- removed: obsolete markup \non_function{}
+
+
 v1.4-8
 2007-05-21
 - mvtnorm is required (change in DESCRIPTION, NAMESPACE and firstlib.R)
@@ -11,7 +19,6 @@ v1.4-8
 
 
 v1.4-7
-
 2007-05-17
 - bug fixed: overdominant returned wrong levels (thanks to Nicholas Orr)
 
