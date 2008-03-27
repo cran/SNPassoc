@@ -11,7 +11,7 @@
 \alias{additive.snp}
 \alias{print.snp}
 \alias{[.snp}
-
+\alias{print.summary.snp}
 
 \title{SNP object}
 \description{

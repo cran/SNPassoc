@@ -59,6 +59,9 @@ S3method(summary,snp)
 S3method(print,snp)
 S3method("[",snp)
 
+S3method(print,summary.snp)
+
+
 S3method(plot,SNPinteraction)
 S3method(print,SNPinteraction)
 

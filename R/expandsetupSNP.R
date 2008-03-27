@@ -1,16 +1,12 @@
 `expandsetupSNP` <-
 function (o) 
 {
-    x <- summary(o, print.out = FALSE)
+    x <- summary(o)
     control<-!is.na(x$allele.freq[,2]) & x$allele.freq[,2]!=0
     o<-order(x$allele.freq[control,2],decreasing=TRUE)
 
-    allele <- rbind(x$allele.names)[o]
-
-
-    alleles <- paste(allele, collapse = "/")
-    if (length(allele) == 1) 
-        alleles <- c(allele)
+    alleles <- rbind(x$allele.names)[o]
+    if (length(alleles) > 1) alleles <- paste(alleles, collapse = "/")
     aux<-ifelse(any(!is.na(x$allele.freq[, 2])),
              max(x$allele.freq[, 2], na.rm = TRUE),NA)
     out <- data.frame(alleles = alleles, 
