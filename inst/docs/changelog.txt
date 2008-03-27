@@ -1,10 +1,14 @@
+v1.5-1
+2008-03-27
+- change in tableHWE to correct deal with strata option
+- expandsetupSNP.R has been modified
+- summary.snp has been modified and print.summary.snp has been created and added to the NAMESPACE
 
 v1.4-9
 2007-10-16
 - modified: expandsetupSNP.R to show alleles sorted by frequency when summary of an object of class 'setupSNP' is executed
 - changed: e-mail address of the maintainer
 - removed: obsolete markup \non_function{}
-
 
 v1.4-8
 2007-05-21
@@ -16,7 +20,6 @@ v1.4-8
 - added: argument nIndiv in association.fit (to deal with genotypeRate properly). association has also been changed (look for 'nSubject')
 - minor change in the function snp (when snp is applied to an object of class snp)
 - added: reference of SNPassoc to some .Rd files
-
 
 v1.4-7
 2007-05-17
