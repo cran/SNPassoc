@@ -1,3 +1,7 @@
+v1.5-2
+2008-04-22
+- added: LD functions adapted from LDplot in package genetics by Gregory Warnes et al.
+
 v1.5-1
 2008-03-27
 - change in tableHWE to correct deal with strata option
