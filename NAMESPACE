@@ -24,7 +24,10 @@ haplo.interaction,
 permTest,
 qqpval,
 GenomicControl,
-maxstat
+maxstat,
+LD,
+LDplot,
+LDtable
 )
 
 import("survival")
@@ -97,6 +100,8 @@ S3method(maxstat,table)
 S3method(maxstat,setupSNP)
 S3method(maxstat,matrix)
 
+S3method(LD,snp)
+S3method(LD,setupSNP)
 
 ##################
 # hidden functions

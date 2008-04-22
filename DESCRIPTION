@@ -1,6 +1,6 @@
 Package: SNPassoc
-Version: 1.5-1
-Date: 2008-Mar-27
+Version: 1.5-2
+Date: 2008-Apr-22
 Depends: R (>= 2.4.0), haplo.stats, survival, mvtnorm
 Title: SNPs-based whole genome association studies
 Author: Juan R González, Lluís Armengol, Elisabet Guinó, Xavier Solé, and Víctor Moreno
@@ -9,4 +9,4 @@ Description: This package carries out most common analysis when performing whole
 License: GPL version 2 or newer
 URL: http://www.r-project.org and http://davinci.crg.es/estivill_lab/snpassoc; 
 Encoding: latin1
-Packaged: Thu Mar 27 16:58:52 2008; jrgonzalez
+Packaged: Tue Apr 22 11:10:30 2008; jrgonzalez
