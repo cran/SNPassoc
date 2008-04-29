@@ -11,7 +11,7 @@ function (x, model = "codominant", alpha = 0.05, include.all.SNPs = FALSE)
     temp1 <- grep("no", as.character(x[, m ]))
     temp2 <- c(1:nrow(x))[is.na(x[, m ])]
     temp <- c(temp1, temp2)
-    if (!(include.all.SNPs)) {
+    if (!(include.all.SNPs) & length(temp)>=1) {
         x <- x[-temp, c(1, (m ))]
         cut.p <- alpha/nrow(x)
     }
@@ -20,7 +20,7 @@ function (x, model = "codominant", alpha = 0.05, include.all.SNPs = FALSE)
     cat("alpha:", alpha, "\n")
     cat("corrected alpha:", cut.p, "\n")
     significant <- x[as.numeric(x[, 2]) <= cut.p, ]
-    if (dim(significant)[1] == 0) {
+    if (all(is.na(significant))) {
         cat("   No significant SNPs after Bonferroni correction \n")
         ans <- NULL
     }

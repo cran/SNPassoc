@@ -33,6 +33,7 @@ LDtable
 import("survival")
 import("mvtnorm")
 importFrom(stats, reorder)
+import("gdata")
 
 
 S3method(summary,haplo.glm)

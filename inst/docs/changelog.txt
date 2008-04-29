@@ -1,3 +1,10 @@
+v1.5-3
+2008-04-29
+- modified: intervals.haplo.glm.R
+- added: summary and print for LD objects
+- modified: Bonferroni.sig (number of tests when no monomorphic SNPs) 
+- added: 'gdata' dependence
+
 v1.5-2
 2008-04-22
 - added: LD functions adapted from LDplot in package genetics by Gregory Warnes et al.

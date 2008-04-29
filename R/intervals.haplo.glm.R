@@ -21,7 +21,9 @@ freqs <- rep(NA, n.control)
 
 for (i in 1:n.control) {
 if (control[i] != "rare" & control[i] != "(Intercept)") {
-nombres[i] <- paste(o$haplo.unique[as.numeric(control[i])], collapse = "")
+
+	nombres[i] <- paste(o$haplo.unique[as.numeric(control[i]),], collapse = "")
+
 freqs[i] <- o$haplo.freq[as.numeric(control[i])]
 }
 else if (control[i] == "(Intercept)") {
