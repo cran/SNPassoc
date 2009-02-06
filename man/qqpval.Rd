@@ -9,10 +9,10 @@ qqpval(p, pch=16, col=4, \dots)
 }
 
 \arguments{
-  \item{p} {a vector of p values}
-  \item{pch} {symbol to use for points}
-  \item{col} {color for points}
-  \item{\dots} {other plot arguments}
+  \item{p}{a vector of p values}
+  \item{pch}{symbol to use for points}
+  \item{col}{color for points}
+  \item{\dots}{other plot arguments}
 }
 
 

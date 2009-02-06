@@ -31,7 +31,7 @@
 \description{Internal SNPassoc functions}
 \usage{
 association.fit(var, dep, adj, quantitative, type, level, 
-       nIndiv, genotypingRate = 0) 
+       nIndiv, genotypingRate = 0, ...) 
 extractPval(x)
 extractPval.i(i,x,pos,models)
 SNPHWE(x)

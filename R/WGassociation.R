@@ -1,6 +1,6 @@
 `WGassociation` <-
 function (formula, data, model=c("all"), quantitative = is.quantitative(formula, 
-    data), genotypingRate = 80, level=0.95)
+    data), genotypingRate = 80, level=0.95, ...)
  {
   
     if(!inherits(data,"setupSNP"))
@@ -38,11 +38,11 @@ function (formula, data, model=c("all"), quantitative = is.quantitative(formula,
      stop("interaction term is not implemented")
 
 
-    association.i<-function(snp.i,adj,data,model,quantitative,genotypingRate,level)
+    association.i<-function(snp.i,adj,data,model,quantitative,genotypingRate,level, ...)
      {
        association( as.formula(paste(adj,"+",snp.i)) , data=data,
           model=model, quantitative=quantitative, genotypingRate=
-          genotypingRate, level=level)
+          genotypingRate, level=level, ...)
      }
  
 
@@ -65,7 +65,7 @@ function (formula, data, model=c("all"), quantitative = is.quantitative(formula,
 
     tab<-lapply(SNPs, association.i, adj=adj, data=data, model=model,
             quantitative=quantitative, genotypingRate=
-            genotypingRate, level=level) 
+            genotypingRate, level=level, ...) 
 
     names(tab)<-SNPs
     attr(tab,"label.SNPs")<-attr(data,"label.SNPs")

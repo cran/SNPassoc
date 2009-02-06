@@ -1,3 +1,19 @@
+v1.5-6
+2009-02-06
+- Changes in .Rd files to pass 'Rd files against version 2 parser' (R version 2.9.0)
+
+v1.5-5
+2008-12-12
+- changed: 'association.fit' and 'association' to incorporate the possibility of using other arguments included in 'glm' function such as 'weigths'. Question posted by Ane Marie Closter
+
+-changed: 'plot.WGassociation' to show -log_10(p-values) instead of -log_10(p-values). Question posted by 
+
+
+v1.5-4
+2008-05-29
+- changed: 'association.fit' problems with factors and levels to determine when a snp is monomorphic [table(as.character(var)) instead of length(levels(var)) ]
+
+
 v1.5-3
 2008-04-29
 - modified: intervals.haplo.glm.R

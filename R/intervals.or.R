@@ -3,7 +3,6 @@ function(o, level, x.b, var, ...)
 {
  x<-o
  z<-abs(qnorm((1-level)/2))
-
  mat.coef <- merge(x$coef, summary(x)$coef, by=0, all.x=TRUE, sort=FALSE)
  nom.pos <- data.frame(names(x$coef), ordre=1:length(x$coef))
  mat.ordre <- merge(nom.pos, mat.coef, by.x=1, by.y=1, all.x=TRUE, sort=FALSE)
@@ -34,6 +33,8 @@ function(o, level, x.b, var, ...)
   or.ic <- cbind(or.ic, c(p.as, rep(NA, times = length(levels(var)) - 1)))
   dimnames(or.ic) <- list(levels(var), c("   OR ", "lower", "upper", "p-value"))
  }
+
  list(or.ic = or.ic)
+ 
 }
 
