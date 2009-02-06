@@ -16,7 +16,7 @@
   \item{x}{a required object of class 'WGassociation' with the attribute 'permTest'. See details}
   \item{method}{statistic used in the permutation test. The default is 'minimum' but 'rtp' (rank truncated product) is
     also available.}
-  \item{K} {number of the K most significant p values from the total number of test performed (e.g number of SNPs) used
+  \item{K}{number of the K most significant p values from the total number of test performed (e.g number of SNPs) used
             to compute the rank truncated product. This argument is only required when method='rtp'. See references }
 
 }

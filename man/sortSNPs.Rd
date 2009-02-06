@@ -25,8 +25,9 @@ sortSNPs(data, colSNPs, info)
   genotypes is in our data frame, are sorted using this vector. 
   
   This information is useful when \code{\link{WGassociation}} function is called since it 
-  allow the user to summaryze the results with the SNPs sorted by genomic position}
+  allow the user to summaryze the results with the SNPs sorted by genomic position
 }
+
 \value{
   a vector indicating the colums where the SNPs are recorded in our data frame ('data' argument), sorted
   using the genomic positions listed in 'dataSNPs.pos' argument)  

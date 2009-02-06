@@ -28,25 +28,25 @@ LDtable(x, colorcut = c(0, 0.01, 0.025, 0.05, 0.1, 1), colors = heat.colors(leng
 }
 \arguments{
 
-  \item{g1} {genotype object or dataframe containing genotype objects}
-  \item{g2} {genotype object (ignored if g1 is a dataframe)}  
-  \item{SNPs} {columns containing SNPs}  
-  \item{x} {LD or LD.data.frame object} 
-  \item{digits} {Number of significant digits to display}
-   \item{which} {Name(s) of LD information items to be displayed}
-\item{colorcut} {P-value cutoffs points for colorizing LDtable}
-  \item{colors} {Colors for each P-value cutoff given in 'colorcut' for LDtable}
- \item{textcol} {Color for text labels for LDtable}
-  \item{marker} {Marker used as 'comparator' on LDplot.  If omitted separate
+  \item{g1}{genotype object or dataframe containing genotype objects}
+  \item{g2}{genotype object (ignored if g1 is a dataframe)}  
+  \item{SNPs}{columns containing SNPs}  
+  \item{x}{LD or LD.data.frame object} 
+  \item{digits}{Number of significant digits to display}
+   \item{which}{Name(s) of LD information items to be displayed}
+\item{colorcut}{P-value cutoffs points for colorizing LDtable}
+  \item{colors}{Colors for each P-value cutoff given in 'colorcut' for LDtable}
+ \item{textcol}{Color for text labels for LDtable}
+  \item{marker}{Marker used as 'comparator' on LDplot.  If omitted separate
           lines for each marker will be displayed}
-\item{distance} {Marker location, used for locating of markers on LDplot.}
-\item{show.all} {If TRUE, show all rows/columns of matrix. Otherwise omit
+\item{distance}{Marker location, used for locating of markers on LDplot.}
+\item{show.all}{If TRUE, show all rows/columns of matrix. Otherwise omit
           completely blank rows/columns.}
-\item{colorize} {LD parameter used for determining table cell colors}
-     \item{cex} {Scaling factor for table text. If absent, text will be scaled
+\item{colorize}{LD parameter used for determining table cell colors}
+     \item{cex}{Scaling factor for table text. If absent, text will be scaled
           to fit within the table cells.}
 
-     \item{\dots} {Optional arguments ('plot.LD.data.frame' passes these to
+     \item{\dots}{Optional arguments ('plot.LD.data.frame' passes these to
           'LDtable' and 'LDplot').}
 }
 

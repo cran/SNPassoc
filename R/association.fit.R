@@ -1,6 +1,7 @@
 `association.fit` <-
-function (var, dep, adj, quantitative, type, level, nIndiv, genotypingRate=0) 
+function (var, dep, adj, quantitative, type, level, nIndiv, genotypingRate=0, ...) 
 {
+
     if (!quantitative) {
       if (length(unique(dep))==1)
       {
@@ -16,12 +17,11 @@ function (var, dep, adj, quantitative, type, level, nIndiv, genotypingRate=0)
             res <- c(paste("Genot ", round(controlGeno, 1), "\\%", sep = ""))
           }
 
-        else if (length(table(var)) == 1 | (length(table(var)) > 1 & 
-            min(table(var)) == 0)) {
+        else if (length(table(as.character(var)))==1) {
             res <- "Monomorphic"
         }
         else {
-         if (length(levels(var)) == 3) {
+         if (length(table(as.character(var))) == 3) {
                 var.co <- codominant(var)
               if (any(type%in%6) | any(type%in%2))
                 var.dom <- dominant(var)
@@ -30,40 +30,40 @@ function (var, dep, adj, quantitative, type, level, nIndiv, genotypingRate=0)
               if (any(type%in%6) | any(type%in%4))
                 var.over <- overdominant(var)
             if (is.null(adj)) {
-                  m.co <- glm(dep ~ var.co, family = binomial)
+                  m.co <- glm(dep ~ var.co, family = binomial, ...)
                   subset <- 1:length(var) %in% as.numeric(rownames(m.co$model))
-                  m.b <- glm(dep ~ NULL, subset = subset, family = binomial)
+                  m.b <- glm(dep ~ NULL, subset = subset, family = binomial, ...)
               if (any(type%in%6) | any(type%in%2))
                   m.dom <- glm(dep ~ var.dom, subset = subset, 
-                    family = binomial)
+                    family = binomial, ...)
               if (any(type%in%6) | any(type%in%3))
                   m.rec <- glm(dep ~ var.rec, subset = subset, 
-                    family = binomial)
+                    family = binomial, ...)
               if (any(type%in%6) | any(type%in%4))
                   m.over <- glm(dep ~ var.over, subset = subset, 
-                    family = binomial)
+                    family = binomial, ...)
               if (any(type%in%6) | any(type%in%5))
                   m.ad <- glm(dep ~ as.numeric(var.co), subset = subset, 
-                    family = binomial)
+                    family = binomial, ...)
                 }
             else {
                   m.co <- glm(dep ~ . + var.co, family = binomial, 
-                    data = adj)
+                    data = adj, ...)
                   subset <- 1:length(var) %in% as.numeric(rownames(m.co$model))
                   m.b <- glm(dep ~ ., subset = subset, family = binomial, 
-                    data = adj)
+                    data = adj, ...)
               if (any(type%in%6) | any(type%in%2))
                   m.dom <- glm(dep ~ . + var.dom, subset = subset, 
-                    family = binomial, data = adj)
+                    family = binomial, data = adj, ...)
               if (any(type%in%6) | any(type%in%3))
                   m.rec <- glm(dep ~ . + var.rec, subset = subset, 
-                    family = binomial, data = adj)
+                    family = binomial, data = adj, ...)
               if (any(type%in%6) | any(type%in%4))
                   m.over <- glm(dep ~ . + var.over, subset = subset, 
-                    family = binomial, data = adj)
+                    family = binomial, data = adj, ...)
               if (any(type%in%6) | any(type%in%5))
                   m.ad <- glm(dep ~ . + as.numeric(var.co), subset = subset, 
-                    family = binomial, data = adj)
+                    family = binomial, data = adj, ...)
                 }
 
 
@@ -145,26 +145,22 @@ function (var, dep, adj, quantitative, type, level, nIndiv, genotypingRate=0)
              dimnames(res)[[2]][5:9] <- c("OR","lower","upper","p-value","AIC")
                
             }
-            else if (length(levels(var)) == 2) {
+            else if (length(table(as.character(var))) == 2) {
                 var.co <- codominant(var)
                 if (is.null(adj)) {
-                  m.co <- glm(dep ~ var.co, family = binomial)
+                  m.co <- glm(dep ~ var.co, family = binomial, ...)
                   subset <- 1:length(var) %in% as.numeric(rownames(m.co$model))
-                  m.b <- glm(dep ~ NULL, subset = subset, family = binomial)
-#                  m.ad <- glm(dep ~ as.numeric(var.co), subset = subset, 
-#                    family = binomial)
+                  m.b <- glm(dep ~ NULL, subset = subset, family = binomial, ...)
                 }
                 else {
                   m.co <- glm(dep ~ . + var.co, family = binomial, 
-                    data = adj)
+                    data = adj, ...)
                   subset <- 1:length(var) %in% as.numeric(rownames(m.co$model))
                   m.b <- glm(dep ~ ., subset = subset, family = binomial, 
-                    data = adj)
-#                  m.ad <- glm(dep ~ . + as.numeric(var.co), subset = subset, 
-#                    family = binomial, data = adj)
+                    data = adj, ...)
                 }
                 co <- cbind(Table.N.Per(var.co, dep, subset)$tp, 
-                  intervals.or(m.co, level, m.b, var)$or.ic, 
+                  intervals.or(m.co, level, m.b, var.co)$or.ic, 
                   c(round(AIC(m.co), 1), NA))
 #                Ad <- c(rep(NA, times = 4), intervals.or(m.ad, level, m.b)$or.ic, round(AIC(m.ad), 1))
 
@@ -196,12 +192,11 @@ function (var, dep, adj, quantitative, type, level, nIndiv, genotypingRate=0)
             res <- c(paste("Genot ", round(controlGeno, 1), "\\%", sep = ""))
           }
 
-        else if (length(table(var)) == 1 | (length(table(var)) > 1 & 
-            min(table(var)) == 0)) {
+        else if (length(table(as.character(var)))==1) {
             res <- "Monomorphic"
         }
         else {
-            if (length(levels(var)) == 3) {
+            if (length(table(as.character(var))) == 3) {
               var.co <- codominant(var)
               if (any(type%in%6) | any(type%in%2))
                 var.dom <- dominant(var)
@@ -210,40 +205,40 @@ function (var, dep, adj, quantitative, type, level, nIndiv, genotypingRate=0)
               if (any(type%in%6) | any(type%in%4))
                 var.over <- overdominant(var)
                 if (is.null(adj)) {
-                  m.co <- glm(dep ~ var.co, family = gaussian)
+                  m.co <- glm(dep ~ var.co, family = gaussian, ...)
                   subset <- 1:length(var) %in% as.numeric(rownames(m.co$model))
-                  m.b <- glm(dep ~ NULL, subset = subset, family = gaussian)
+                  m.b <- glm(dep ~ NULL, subset = subset, family = gaussian, ...)
               if (any(type%in%6) | any(type%in%2))
                   m.dom <- glm(dep ~ var.dom, subset = subset, 
-                    family = gaussian)
+                    family = gaussian, ...)
               if (any(type%in%6) | any(type%in%3))
                   m.rec <- glm(dep ~ var.rec, subset = subset, 
-                    family = gaussian)
+                    family = gaussian, ...)
               if (any(type%in%6) | any(type%in%4))
                   m.over <- glm(dep ~ var.over, subset = subset, 
-                    family = gaussian)
+                    family = gaussian, ...)
               if (any(type%in%6) | any(type%in%5))
                   m.ad <- glm(dep ~ as.numeric(var.co), subset = subset, 
-                    family = gaussian)
+                    family = gaussian, ...)
                 }
                 else {
                   m.co <- glm(dep ~ . + var.co, family = gaussian, 
-                    data = adj)
+                    data = adj, ...)
                   subset <- 1:length(var) %in% as.numeric(rownames(m.co$model))
                   m.b <- glm(dep ~ ., subset = subset, family = gaussian, 
-                    data = adj)
+                    data = adj, ...)
               if (any(type%in%6) | any(type%in%2))
                   m.dom <- glm(dep ~ . + var.dom, subset = subset, 
-                    family = gaussian, data = adj)
+                    family = gaussian, data = adj, ...)
               if (any(type%in%6) | any(type%in%3))
                   m.rec <- glm(dep ~ . + var.rec, subset = subset, 
-                    family = gaussian, data = adj)
+                    family = gaussian, data = adj, ...)
               if (any(type%in%6) | any(type%in%4))
                   m.over <- glm(dep ~ . + var.over, subset = subset, 
-                    family = gaussian, data = adj)
+                    family = gaussian, data = adj, ...)
               if (any(type%in%6) | any(type%in%5))
                   m.ad <- glm(dep ~ . + as.numeric(var.co), subset = subset, 
-                    family = gaussian, data = adj)
+                    family = gaussian, data = adj, ...)
                 }
               if (any(type%in%6) | any(type%in%1))
                 co <- cbind(Table.mean.se(var.co, dep, subset)$tp, 
@@ -280,26 +275,22 @@ function (var, dep, adj, quantitative, type, level, nIndiv, genotypingRate=0)
             }
 
 
-           else if (length(levels(var)) == 2) {
+           else if (length(table(as.character(var))) == 2) {
                 var.co <- codominant(var)
                 if (is.null(adj)) {
-                  m.co <- glm(dep ~ var.co, family = gaussian)
+                  m.co <- glm(dep ~ var.co, family = gaussian, ...)
                   subset <- 1:length(var) %in% as.numeric(rownames(m.co$model))
-                  m.b <- glm(dep ~ NULL, subset = subset, family = gaussian)
-#                  m.ad <- glm(dep ~ as.numeric(var.co), subset = subset, 
-#                    family = gaussian)
+                  m.b <- glm(dep ~ NULL, subset = subset, family = gaussian, ...)
                 }
                 else {
                   m.co <- glm(dep ~ . + var.co, family = gaussian, 
-                    data = adj)
+                    data = adj, ...)
                   subset <- 1:length(var) %in% as.numeric(rownames(m.co$model))
                   m.b <- glm(dep ~ ., subset = subset, family = gaussian, 
-                    data = adj)
-#                  m.ad <- glm(dep ~ . + as.numeric(var.co), subset = subset, 
-#                    family = gaussian, data = adj)
+                    data = adj, ...)
                 }
                 co <- cbind(Table.mean.se(var.co, dep, subset)$tp, 
-                  intervals.dif(m.co, level, m.b, var)$m, AIC = c(AIC(m.co), 
+                  intervals.dif(m.co, level, m.b, var.co)$m, AIC = c(AIC(m.co), 
                     NA))
 #                Ad <- c(rep(NA, 3), intervals.dif(m.ad, level, m.b)$m, round(AIC(m.ad), 1))
                 Ad <- c(rep(NA, 3), intervals.dif(m.co, level,m.b)$m, round(AIC(m.co), 1)) 

@@ -58,7 +58,7 @@
    'common' or 'minor'. The default is 
     \code{reorder="common"}. In that case, alleles are sorted within each individual by
     common homozygous.}
-  \item{remove.spaces} {logical indicating whether spaces and tabs will be
+  \item{remove.spaces}{logical indicating whether spaces and tabs will be
           removed from the genotypes before processing}
   \item{allow.partial.missing}{logical indicating whether one allele is
           permitted to be missing.  When set to 'FALSE' both alleles
@@ -94,11 +94,12 @@ SNPassoc: an R package to perform whole genome association studies. Bioinformati
 
 
 \value{
-  
+ 
   The snp class extends "factor" where the levels is a character vector of possible 
-   genotype values stored coded by \code{paste( allele1, "", allele2, sep="/")}}
-  
+   genotype values stored coded by \code{paste( allele1, "", allele2, sep="/")}
 }
+  
+
 
 \seealso{
   \code{\link{association}}  

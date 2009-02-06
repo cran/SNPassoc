@@ -1,7 +1,7 @@
 `association` <-
 function (formula, data, model = c("all"), model.interaction = c("codominant"), 
     subset, name.snp = NULL, quantitative = is.quantitative(formula, 
-        data),  genotypingRate= 0, level = 0.95) 
+        data),  genotypingRate= 0, level = 0.95, ...) 
 {
     cl <- match.call()
     mf <- match.call(expand.dots = FALSE)
@@ -150,7 +150,7 @@ function (formula, data, model = c("all"), model.interaction = c("codominant"),
                 for (i in 1:nstrats) {
                   res[[i]] <- association.fit(var[strats == i], 
                     dep[strats == i], adj, quantitative, type, 
-                    level, nSubject, genotypingRate)
+                    level, nSubject, genotypingRate, ...)
                 }
             }
             else {
@@ -158,14 +158,14 @@ function (formula, data, model = c("all"), model.interaction = c("codominant"),
                   res[[i]] <- association.fit(var[strats == i], 
                     dep[strats == i], data.frame(adj[strats == 
                       i, ]), quantitative, type, level, nSubject,
-                       genotypingRate)
+                       genotypingRate, ...)
                 }
             }
             attr(res, "strata") <- levels(strata.keep)
         }
         else {
             res <- association.fit(var, dep, adj, quantitative, 
-                type, level, nSubject, genotypingRate)
+                type, level, nSubject, genotypingRate, ...)
         }
         interaction <- FALSE
     }

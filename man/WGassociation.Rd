@@ -25,7 +25,7 @@
 }
 \usage{
    WGassociation(formula, data, model = c("all"), quantitative = is.quantitative(formula, data),
-                 genotypingRate = 80, level = 0.95)
+                 genotypingRate = 80, level = 0.95, ...)
 }
 
 \arguments{
@@ -48,6 +48,7 @@
   \item{genotypingRate}{ minimum percentage of genotype rate for a given SNP to be included in the analysis.
                   Default is 80\%.}
   \item{level}{signification level for confidence intervals. Defaul 95\%.}
+  \item{...}{Other arguments to be passed through glm function}
 }
 
 \details{

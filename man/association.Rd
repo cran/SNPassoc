@@ -17,7 +17,7 @@
 association(formula, data, model=c("all"), model.interaction=
        c("codominant"), subset, name.snp = NULL, quantitative = 
        is.quantitative(formula,data), genotypingRate= 0, 
-       level = 0.95)
+       level = 0.95, ...)
 }
 
 \arguments{
@@ -50,6 +50,7 @@ association(formula, data, model=c("all"), model.interaction=
                   Default is 0\% (e.g. all SNPs are analyzed). This parameter should not be
                   changed. It is used in the function 'WGassociation'.}
   \item{level}{signification level for confidence intervals.}
+  \item{...}{Other arguments to be passed through glm function}
 }
 
 \details{
