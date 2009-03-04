@@ -1,3 +1,7 @@
+v1.5-7
+2009-03-04
+- print.LD file added
+
 v1.5-6
 2009-02-06
 - Changes in .Rd files to pass 'Rd files against version 2 parser' (R version 2.9.0)
