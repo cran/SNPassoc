@@ -104,6 +104,11 @@ S3method(maxstat,matrix)
 S3method(LD,snp)
 S3method(LD,setupSNP)
 
+S3method(print,LD)
+S3method(print,LD.data.frame)
+S3method(summary,LD.data.frame)
+S3method(print,summary.LD.data.frame)
+
 ##################
 # hidden functions
 

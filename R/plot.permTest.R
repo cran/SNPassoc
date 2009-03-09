@@ -15,9 +15,7 @@ plot.permTest<-function(x,...)
   lines(grid,dbeta(grid,param[1],param[2]),col="blue",lwd=2)
 
   segments(psig,0,psig,dbeta(psig,param[1],param[2]),col="red")
-  xx<-par("usr")[2]
-  yy<-par("usr")[4]
-  legend(xx/1.7,yy,c("empirical distribution","teorical distribution",paste("adjusted p value:",round(psig,8))),
+  legend("topright",c("empirical distribution","theoretical distribution",paste("adjusted p value:",round(psig,8))),
         lty=c(1,1,1),col=c("gray90","blue","red"),title="",cex=0.8,bty="n")
 
  }
