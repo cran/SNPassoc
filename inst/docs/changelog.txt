@@ -1,3 +1,7 @@
+v1.5-8
+2009-03-09
+- changed: NAMESPACE includes methods for LD
+
 v1.5-7
 2009-03-04
 - print.LD file added
