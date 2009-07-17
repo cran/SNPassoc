@@ -9,7 +9,7 @@
 }
 
 \usage{
-GenomicControl(x, snp.sel = NULL)
+GenomicControl(x, snp.sel)
 }
 
 \arguments{

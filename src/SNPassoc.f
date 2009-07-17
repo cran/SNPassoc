@@ -1,27 +1,28 @@
        subroutine permutation(nperm,nrow,ncol,ngeno,model,
-     +                        genotRate,data,Gstat)
+     +                        genotRate,data1,Gstat)
        
        implicit none
        integer nperm,nrow,ncol,ngeno,genotRate,model
-       integer data(nrow,ncol)
+       integer data1(nrow,ncol)
        double precision Gstat(ncol-1,nperm),GstatAux(ncol-1)
        integer i,j,k
        integer p(nrow),aux(nrow)
        
        do i=1,nrow
-        aux(i)=data(i,1) 
+        aux(i)=data1(i,1) 
        end do    
  
 c initiate the n permutations (nperm)
        do i=1,nperm
 c permutation of case-control label
         call rperm(p,nrow) 
+
         do j=1,nrow
-         data(j,1)=aux(p(j)) 
+         data1(j,1)=aux(p(j)) 
         end do
 c computing G statistic
         call WGassociation(nrow,ncol,ngeno,model,genotRate,
-     +          data,GstatAux)
+     +          data1,GstatAux)
         do k=1,ncol-1
          Gstat(k,i)=GstatAux(k)
         end do 
@@ -35,24 +36,24 @@ c computing G statistic
 
 
        subroutine WGassociation(nrow,ncol,ngeno,model,genotRate,
-     +                         data,Gstat)
+     +                         data1,Gstat)
 
        implicit none
        integer nrow,ncol,ngeno,genotRate,ipred,i,j,k
-       integer data(nrow,ncol),nn(2,ngeno),model
+       integer data1(nrow,ncol),nn(2,ngeno),model
        integer caco(nrow), snp(nrow)
        double precision Gstat(ncol-1)
        real x(nrow), y(nrow),ymin,ymax,control, r2
        integer nomis
     
        do k=1,nrow
-        caco(k)=data(k,1)
+        caco(k)=data1(k,1)
        end do 
 
        do i=2,ncol
         if (model.ne.5) then
          do k=1,nrow
-          snp(k)=data(k,i)
+          snp(k)=data1(k,i)
          end do 
          call table(nrow,ngeno,caco,snp,model,genotRate,
      +            nn,ipred)
@@ -66,9 +67,9 @@ c additive
         else if (model.eq.5) then
          nomis=0
          do j=1,nrow
-           if (data(j,i).ne.0) then
-            x(nomis+1)=real(data(j,1))
-            y(nomis+1)=real(data(j,i))
+           if (data1(j,i).ne.0) then
+            x(nomis+1)=real(data1(j,1))
+            y(nomis+1)=real(data1(j,i))
             nomis=nomis+1
            end if  
           end do

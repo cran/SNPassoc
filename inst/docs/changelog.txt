@@ -1,3 +1,13 @@
+v1.6-0
+2009-07-17
+- changed: labels of plots for p-values (-log[10])
+
+v1.5-9
+2009-07-04
+- changes in [.WGassociation 
+- added: GenomicControl now deals with 2 d.f. chi-square test (e.g., codominant)
+- changes in plot.WGassociation 
+
 v1.5-8
 2009-03-09
 - changed: NAMESPACE includes methods for LD
