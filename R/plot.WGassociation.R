@@ -15,7 +15,7 @@ function (x, alpha = 0.05, plot.all.SNPs = FALSE, print.label.SNPs = TRUE,
      }
     if (!whole) {
         x <- attr(x, "pvalues")
-        ylims<-range(-log(x[,-1]),na.rm=TRUE)
+        ylims<-range(-log(x[,-1],10),na.rm=TRUE)
         control.Mono <- grep("Monomorphic", as.character(x[, 
             1]))
         control.Geno <- grep("Genot", as.character(x[, 1]))
@@ -26,66 +26,77 @@ function (x, alpha = 0.05, plot.all.SNPs = FALSE, print.label.SNPs = TRUE,
         old.mar <- par("mar")
         old.mfrow <- par("mfrow")
         on.exit(par(mar = old.mar, mfrow = old.mfrow))
-        m <- matrix(c(1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 
-            8, 1, 9, 1, 10, 1, 11, 1, 12), nrow = 11, ncol = 2, 
-            byrow = TRUE)
-        layout(m, heights = c(0.3, 1, 0.2, 1, 0.2, 1, 0.2, 1, 
-            0.2, 1, 0.7), widths = c(0.05, 1))
-        par(mar = c(0, 0, 0, 0))
+#VM
         n.models <- ncol(ans) - 1
-        if (n.models>2)
-         control.labelY <- 6.5 - ceiling(n.models/2)
-        else if (n.models==2)
-         control.labelY <- 4.5
-        else
-          control.labelY <- 5
-        plot(rep(1, 5), 1:5, type = "n", axes = FALSE, xlab = "", 
-            ylab = "")
-        text(1, control.labelY, "-log (p value)", font = 2, srt = 90, 
-            cex = 2, adj=1)
-        models <- c("codominant", "dominant", "recessive", "overdominant", 
-            "log-additive")
+#        m <- matrix(c(1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1, 9, 1, 10, 1, 11, 1, 12), nrow = 11, ncol = 2, byrow = TRUE)        
+
+        m <-cbind(rep(1,n.models*2+1),2:(n.models*2+2))
+                        
+        layout(m, heights = c(rep(c(0.3, 1), n.models), 0.7), widths = c(0.05, 1))
+# para que salgan bien los labels de los SNPs si no se dibujan todos los modelos       
+
+        par(mar = c(0, 0, 0, 0))
+# region vertical
+#        if (n.models>2)
+#         control.labelY <- 6.5 - ceiling(n.models/2)
+#        else if (n.models==2)
+#         control.labelY <- 4.5
+#        else
+#          control.labelY <- 5
+
+        control.labelY <- 3.
+
+        plot(rep(1, 5), 1:5, type = "n", axes = FALSE, xlab = "", ylab = "")
+        text(1, control.labelY, expression(paste(-log[10]," (p value)")), font = 2, srt = 90, cex = 2, adj=0.5)
+#        models <- c("codominant", "dominant", "recessive", "overdominant", "log-additive")
+        models <- names(ans)[-1]
         ok <- 2
-        for (i in 2:6) {
+        for (i in 1:n.models) {
             par(mar = c(0, 0, 0, 0))
-            if (any(models[i - 1] %in% names(ans))) {
+         #   if (any(models[i] %in% names(ans))) {
+            # cabecera
                 plot(1:3, rep(1, 3), type = "n", axes = FALSE, 
                   xlab = "", ylab = "")
-                if (i == 2) 
+                if (i == 1) 
                   legend(2.5, 1.5, c("Nominal p value", "Bonferroni correction"), 
                     lty = c(2, 2), col = c("pink1", "red"), cex = 1, 
                     bty = "n", y.intersp = 0.8)
-                text(2, 1, models[i - 1], col = "blue", cex = 1.5, 
+                text(2, 1, models[i], col = "blue", cex = 1.5, 
                   font = 2)
                 pval <- ans[, ok]
-                xx <- -log(pval)
+                xx <- -log(pval,10)
 
                 par(mar = c(0.3, 0, 0, 0))
+             # p-values   
                 plot(c(1:length(xx)), xx, type = "b", axes = FALSE, 
                   ylab = "", xlab = "", ylim=ylims)
                 axis(1, at = c(1:length(xx)), label = rep("", 
                   length(xx)), pos = 0)
                 control.y <- ceiling(seq(0,ceiling(ylims[2]),length=6))
-                axis(2, at = control.y, label = control.y, 
-                  pos = 1)
-                cut <- -log(alpha)
+
+
+                axis(2, at = control.y, label = -control.y, 
+                  pos = 1,xaxt = "n")
+
+           
+                cut <- -log(alpha,10)
                 segments(1, cut, length(xx), cut, col = "pink2", 
                   lty = 2)
                 pvalues <- xx[!is.na(xx)]
                 cut.p <- alpha/length(pvalues)
-                cut.trans <- -log(cut.p)
+                cut.trans <- -log(cut.p,10)
                 if (cut.trans > max(xx, na.rm = TRUE)) {
                   cat("Warning: No SNP is statistically significant after \n         Bonferroni Correction under",
-                    models[i - 1], "model \n")
+                    models[i], "model \n")
                 }
 #                else {
                   segments(1, cut.trans, length(xx), cut.trans, 
                     col = "red", lty = 2)
 #                }
                 ok <- ok + 1
-            }
+        #    }
         }
-        if (ok < 6) 
+        if (ok < n.models) 
             plot(1:3, rep(1, 3), type = "n", axes = FALSE, xlab = "", 
                 ylab = "")
         plot(c(1:nrow(ans)), rep(0, nrow(ans)), type = "n", axes = FALSE)
@@ -147,11 +158,11 @@ function (x, alpha = 0.05, plot.all.SNPs = FALSE, print.label.SNPs = TRUE,
             col <- as.character(cut(dat, cutPval, labels = col.legend))
             col[is.na(col)] <- "white"
             dat[is.na(dat)] <- 1
-            plot(pos, -log(dat), axes = FALSE, xlab = "", ylab = "", 
+            plot(pos, -log(dat,10), axes = FALSE, xlab = "", ylab = "", 
                 type = "h", col = col, xlim = limits, ylim = c(0, 
-                  -log(ylim.sup)))
+                  -log(ylim.sup,10)))
             segments(limits[1], 0, max(pos), 0)
-            segments(centro[i], -1, centro[i], -log(max.y), lwd = 3, 
+            segments(centro[i], -1, centro[i], -log(max.y,10), lwd = 3, 
                 col = "darkblue", xpd = TRUE)
             text(par("usr")[1], 0, chr[i], cex = 1, adj = 0.5)
         }

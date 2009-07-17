@@ -1,30 +1,24 @@
-GenomicControl<-function(x, snp.sel=NULL)
+GenomicControl<-function(x, snp.sel)
  {
   if(!inherits(x,"WGassociation"))
    stop("x must be an object of class 'WGassociation'")
 
-  if ("codominant"%in%names(x))
-   stop(" \n  Genomic control cannot be applied to codominant model. Only to 2x2 tables") 
-
-  WGchisq<-function(x) {
-  pok<-1-x
-  chisq<-qchisq(pok,1)
-  chisq
+  WGchisq<-function(x, model) {
+     df<-ifelse(model=="codominant", 2, 1)
+     qchisq(x,df, lower.tail=FALSE)
   } 
 
-  if (!is.null(snp.sel))
-   {
-    chisq.obs.sel<-apply(pvalues(x)[snp.sel,-1],2,WGchisq)
-    num<-apply(chisq.obs.sel,2,median,na.rm=TRUE)
-    lambda<-num/0.456
-   }
-  else
-   {
-    chisq.obs<-apply(pvalues(x)[,-1],2,WGchisq)
-    num<-apply(chisq.obs,2,median,na.rm=TRUE)
-    lambda<-num/0.456
-   }
-
+  if (missing(snp.sel)) snp.sel<-rep(TRUE,nrow(x))
+  p<-pvalues(x)[snp.sel,-1]
+  chisq.obs<-sapply(1:ncol(p) ,function(x) WGchisq(p[,x],names(p)[x]))
+   
+  lambda<-apply(chisq.obs,2,median,na.rm=TRUE) 
+  names(lambda)<-names(x)[-1]
+  
+  den<-rep(0.456,ncol(x)-1)
+  den[names(lambda)=="codominant"]<-1.388
+  lambda<- lambda/den
+  
   lambdaOK<-ifelse(lambda<1,1,lambda)
   chisq.corrrected<-sweep(chisq.obs, 2, lambdaOK,FUN="/")
   pOK<-1-pchisq(chisq.corrrected,1)
@@ -33,6 +27,8 @@ GenomicControl<-function(x, snp.sel=NULL)
   k<-length(names(x))
   attr(x,"pvalues")[,2:k]<-pOK
 
-  cat("\n lambda: ",lambda,"\n")
+  cat("\nlambda:\n")
+  print(lambda)
   x
+
 }

@@ -3,11 +3,15 @@ function(x,i,j,  ...){
     if (missing(i)) i<-1:nrow(x)
     if (missing(j)) j<-1:ncol(x)
 
+    if (is.numeric(i)) i<-(1:nrow(x))[i]
+    if (is.numeric(j)) j<-(1:ncol(x))[j]
+
     if (is.character(i)) i<-match(i,rownames(x))
-    if (is.character(j)) j<-match(j,rownames(x))
+    if (is.character(j)) j<-match(j,colnames(x))
     
     if (is.logical(i)) i<-(1:nrow(x))[i]
     if (is.logical(j)) j<-(1:ncol(x))[j]
+
 
     if (!(1 %in% j)) j<-c(1,j)
     if (length(j)==1) if(j==1) j<-1:2
