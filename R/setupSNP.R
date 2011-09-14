@@ -16,12 +16,12 @@ function(data, colSNPs, sort=FALSE, info, sep="/", ...)
      temp <- sortSNPs(data, colSNPs, info)
      pos <- temp$pos 
      info <- temp$dataSorted
-     temp <- data[, pos]
+     temp <- data[, pos, drop=FALSE]
      dataSNPs <- lapply(temp, snp, sep = sep, ...)
    }
  else
    { 
-    dataSNPs <- lapply(data[,colSNPs],snp,sep=sep, ...)
+    dataSNPs <- lapply(data[,colSNPs, drop=FALSE],snp,sep=sep, ...)
    }
 
  dataSNPs<-data.frame(dataSNPs) 

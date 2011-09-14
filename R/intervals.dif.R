@@ -23,7 +23,7 @@ function(o, level, x.b, var, pval=TRUE, ...)
  
   if (pval)
   {
-   p.as <- anova(x, x.b, test = "Chi")$"P(>|Chi|)"[2]
+   p.as <- anova(x, x.b, test = "F")$"Pr(>F)"[2]
    m <- cbind(m, p.as)
    colnames(m) <- c("dif","lo","up","pval")
   }
@@ -40,7 +40,7 @@ function(o, level, x.b, var, pval=TRUE, ...)
  
   if (pval)
   {
-   p.as <- anova(x, x.b, test = "Chi")$"P(>|Chi|)"[2]
+   p.as <- anova(x, x.b, test = "F")$"Pr(>F)"[2]
    m <- cbind(m, c(p.as,rep(NA,times=length(levels(var))-1)))
    colnames(m) <- c("dif","lower","upper","pval")
   }

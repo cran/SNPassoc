@@ -39,8 +39,8 @@ function (formula, data, quantitative = is.quantitative(formula,
 
 
     colSNPs<-attr(data,"colSNPs")
-    if (is.vector(colSNPs) & length(colSNPs) > 1) 
-        dataSNPs.sel <- data[, colSNPs]
+    if (is.vector(colSNPs) & length(colSNPs) > 0) 
+        dataSNPs.sel <- data[, colSNPs, drop=FALSE]
     else stop("data should have an attribute called 'colSNPs'. Try again 'setupsNP' function")
     
     dataSNPs <- data.frame(lapply(dataSNPs.sel,function(x,model.sel) model.sel(x),model.sel=modelOK)) 
@@ -111,13 +111,34 @@ function (formula, data, quantitative = is.quantitative(formula,
               mod.b2 <- glm(as.formula(paste(adj, "+ dataSNPs[, j]")), data = data,
                          family=fam,subset=subset)
 
-              pval[i,j]<-anova(mod.a,mod.i,test="Chisq")$"P(>|Chi|)"[2]
+              if (quantitative)
+               pval[i,j]<-anova(mod.a,mod.i,test="F")$"Pr(>F)"[2]
+              else
+               {
+                 t1 <- anova(mod.a, mod.i, test="Chisq")
+                 pval[i,j] <- t1[2, grep("^P.*Chi",names(t1))]
+               }
 
               if(mod.b1$aic<=mod.b2$aic) 
-                pval[j,i]<-anova(mod.b1,mod.a,test="Chisq")$"P(>|Chi|)"[2]
+               {
+                if (quantitative)
+                  pval[j,i] <- anova(mod.b1, mod.a, test="F")$"Pr(>F)"[2]
+                else
+                 {
+                  t1 <- anova(mod.b1, mod.a, test="Chisq")$"Pr(>F)"[2]
+                  pval[j,i] <- t1[2, grep("^P.*Chi",names(t1))]
+                 }
+               }
               else  
-                pval[j,i]<-anova(mod.b2,mod.a,test="Chisq")$"P(>|Chi|)"[2]
-
+               {
+                if (quantitative)
+                  pval[j,i] <- anova(mod.b2, mod.a, test="F")$"Pr(>F)"[2]
+                else
+                 {
+                  t1 <- anova(mod.b2, mod.a, test="Chisq")$"Pr(>F)"[2]
+                  pval[j,i] <- t1[2, grep("^P.*Chi",names(t1))]
+                 }
+               }
              }
              j<-j+1
            }
@@ -127,7 +148,7 @@ function (formula, data, quantitative = is.quantitative(formula,
           subset <- 1:nrow(data) %in% as.numeric(rownames(mod.0$model))
           mod.b <- glm(as.formula(paste(adj)), data = data,
                          family="gaussian",subset=subset)
-          pval[i,i] <- anova(mod.b,mod.0,test="Chisq")$"P(>|Chi|)"[2]
+          pval[i,i] <- anova(mod.b,mod.0,test="F")$"Pr(>F)"[2]
          }
 
           i<-i+1

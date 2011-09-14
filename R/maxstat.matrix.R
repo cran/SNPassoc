@@ -150,6 +150,15 @@ maxstat.matrix<-function(x,...)
       rr<-dGrec(x)
       ad<-dGadd(x)
 
+     # To control G-statistic equal to 0
+     if (dom==0)
+      dd<-dd+runif(length(dd))/1000 
+     if (rec==0)
+      rr<-rr+runif(length(rr))/1000
+     if (add==0)
+      ad<-ad+runif(length(ad))/1000
+
+
      # sigma
       ss<-sigmaMatrix(x)
 
