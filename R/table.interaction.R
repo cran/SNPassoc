@@ -72,27 +72,29 @@ function(var, dep, adj = NULL, int, num.status, level)
 		}
 
 		#Check if interaction pvalues are NA
-		pval <- anova(m.b, m.int, test = "Chi")$"P(>|Chi|)"[2];
+		t1 <- anova(m.b, m.int, test = "Chi")
+                pval <- t1[2, grep("^P.*Chi",names(t1))]
 		if (is.na(pval))
 		{
-			pval <- "NA";
+			pval <- "NA"
 		}
 		else
 		{
-			pval <- format.pval(pval);
+			pval <- format.pval(pval)
 		}
 		
-		pval.trend <- anova(m.t, m.t.int, test = "Chi")$"P(>|Chi|)"[2];
+		t2 <- anova(m.t, m.t.int, test = "Chi")
+                pval.trend <- t2[2, grep("^P.*Chi",names(t2))]
 		if (is.na(pval.trend))
 		{
-			pval.trend <- "NA";
+			pval.trend <- "NA"
 		}
 		else
 		{
-			pval.trend <- format.pval(pval.trend);
+			pval.trend <- format.pval(pval.trend)
 		}
 		rownames(taula.int) <- levels(var);
-		list(table=taula.int,pval=pval,trend=pval.trend);
+		list(table=taula.int,pval=pval,trend=pval.trend)
 	}
 	else #Continuous response variable
 	{
@@ -157,7 +159,7 @@ function(var, dep, adj = NULL, int, num.status, level)
 	        j <- j + 1;
 	    }
 
-		pval <- anova(m.b, m.int, test = "Chi")$"P(>|Chi|)"[2];
+		pval <- anova(m.b, m.int, test = "F")$"Pr(>F)"[2];
 		if (is.na(pval))
 		{
 			pval <- "NA";
@@ -167,7 +169,7 @@ function(var, dep, adj = NULL, int, num.status, level)
 			pval <- format.pval(pval);
 		}
 		
-		pval.trend <- anova(m.t, m.t.int, test = "Chi")$"P(>|Chi|)"[2];
+		pval.trend <- anova(m.t, m.t.int, test = "F")$"Pr(>F)"[2];
 		if (is.na(pval.trend))
 		{
 			pval.trend <- "NA";

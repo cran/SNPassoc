@@ -33,8 +33,7 @@ function (object, ...)
         tt.a <- c(alle1, alle2)
         tt.a.prop <- prop.table(tt.a)
         ans.a <- cbind(frequency = tt.a, percentage = tt.a.prop * 100)
-
-        pvalueHWE <- SNPHWE(ans.g[, 1])
+        pvalueHWE <- SNPHWE(c(tbl,0,0)[1:3])  # VM make sure 3 genotypes are sent i			
         dimnames(ans.a)[[1]] <- alle
      }
      else {

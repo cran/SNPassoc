@@ -6,7 +6,7 @@ function (x, print.labels.SNPs = TRUE,
      stop("x must be an object of class 'setupSNP'")
 
    colSNPs<-attr(x,"colSNPs")
-   data.SNPs <- t(x[colSNPs])
+   data.SNPs <- t(x[colSNPs, drop=FALSE])
    label.SNPs<- attr(x,"label.SNPs")
    genInfo<-attr(x,"gen.info")
 

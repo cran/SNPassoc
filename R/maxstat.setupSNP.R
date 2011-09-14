@@ -8,7 +8,7 @@ maxstat.setupSNP<-function(x, y, colSNPs=attr(x,"colSNPs"), ...)
  if(length(table(y))>2)
   stop("case-control variable must have only 2 levels")  
 
- ans<-sapply(x[,colSNPs], function(o) maxstat(y, o, ...))
+ ans<-sapply(x[,colSNPs, drop=FALSE], function(o) maxstat(y, o, ...))
  class(ans)<-"maxstat"
  ans
 }

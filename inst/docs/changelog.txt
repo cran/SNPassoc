@@ -1,3 +1,24 @@
+v1.8-1
+2011-11-22 (Changes to R-2.14.0)
+- require has been removed from firstlib function
+- HapMap.rda has been resaved using better compression tools::resaveRdaFiles()
+- anova.glm does not returns "P(>|Chi|)"[2]  ->  changed to  t1[2, grep("^P.*Chi",names(t1))] (Peter's e-mail)
+     - functions changed: intervals.dif, intervals.or, table.interaction, interactionPval
+
+v1.8-0
+2011-09-14
+- bug fixed: problems when only 1 SNP is analyzed (see Victor's e-mail)
+- bug fixed: summary.snp does not compute the HWE when only two genotypes are available (see Victor's e-mail)
+
+v1.7-0
+2011-02-28
+- bug fixed: problem with heterozygous codes (see Ross Whetten's e-mail)
+- added: a new function to compute the exact probability of a genetic score
+
+v1.6-1
+2010-09-26
+- added: some extra-code to consider G-statistic equal to 0 after Jiexun's comment
+
 v1.6-0
 2009-07-17
 - changed: labels of plots for p-values (-log[10])
@@ -143,7 +164,7 @@ v1.3
 2006-11-23
 - added methods for extraction and modification of setupSNP and WGassociation objects 
 - genetic model functions generic
-	-methods: default: recode (accepts snp, numeric, factor or character max 3 values)
+- methods: default: recode (accepts snp, numeric, factor or character max 3 values)
 		  WGassociation: extracts pvalues for that model
 
 

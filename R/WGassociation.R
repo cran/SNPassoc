@@ -47,9 +47,13 @@ function (formula, data, model=c("all"), quantitative = is.quantitative(formula,
  
 
     colSNPs<-attr(data,"colSNPs")
-    if (is.vector(colSNPs) & length(colSNPs) > 1) 
-        dataSNPs <- data[, colSNPs]
-    else stop("data should have an attribute called 'colSNPs'. Try again 'setupSNP' function")
+    if (! (is.vector(colSNPs) & length(colSNPs) > 0)) stop("data should have an attribute called 'colSNPs'. Try again 'setupSNP' function")
+
+#    if (is.vector(colSNPs) & length(colSNPs) > 1) 
+#        dataSNPs <- data[, colSNPs]
+#    else stop("data should have an attribute called 'colSNPs'. Try again 'setupSNP' function")
+
+
     
     type<-charmatch(model,c("codominant","dominant","recessive","overdominant","log-additive","all"))
     type<-sort(type)

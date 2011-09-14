@@ -19,7 +19,8 @@ function(o, level, x.b, var, ...)
   focus <- dim(a)[1.]
   or.ic <- round(cbind(or[focus,  ], li[focus,  ], ls[focus,  ]), 2.)
   or.ic[or.ic > 999.] <- NA
-  p.as <- anova(x, x.b, test = "Chi")$"P(>|Chi|)"[2]
+  t1 <- anova(x, x.b, test = "Chi")
+  p.as <- t1[2, grep("^P.*Chi",names(t1))]
   or.ic <- cbind(or.ic, p.as)
   dimnames(or.ic) <- NULL
  }
@@ -29,7 +30,8 @@ function(o, level, x.b, var, ...)
   or.ic <- round(cbind(or[focus,  ], li[focus,  ], ls[focus,  ]), 2)
   or.ic[or.ic > 999.] <- NA
   or.ic <- round(rbind(c(1, NA, NA), or.ic), 2)
-  p.as <- anova(x, x.b, test = "Chi")$"P(>|Chi|)"[2]
+  t1 <- anova(x, x.b, test = "Chi")
+  p.as <- t1[2, grep("^P.*Chi",names(t1))]
   or.ic <- cbind(or.ic, c(p.as, rep(NA, times = length(levels(var)) - 1)))
   dimnames(or.ic) <- list(levels(var), c("   OR ", "lower", "upper", "p-value"))
  }

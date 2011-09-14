@@ -4,7 +4,7 @@ function (x, strata)
     if (!inherits(x, "setupSNP"))
         stop("x must be an object of class 'setupSNP'")
     colSNPs <- attr(x, "colSNPs")
-    data.SNPs <- x[colSNPs]
+    data.SNPs <- x[colSNPs, drop=FALSE]
     tt <- lapply(data.SNPs, table)
     ans <- cbind("HWE (p value)"=unlist(lapply(tt, SNPHWE)))
     if (!missing(strata)) {

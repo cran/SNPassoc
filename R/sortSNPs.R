@@ -3,7 +3,7 @@ function (data, colSNPs, info)
 {
     o <- order(info[, 2], info[, 3])
     label.SNPs.o <- info[o, 1]
-    label.SNPs <- names(data[, colSNPs])
+    label.SNPs <- names(data[, colSNPs, drop=FALSE])
 
 #control
     ans <- match(label.SNPs, label.SNPs.o)
