@@ -66,7 +66,5 @@ LDtable(x, colorcut = c(0, 0.01, 0.025, 0.05, 0.1, 1), colors = heat.colors(leng
   \code{\link{setupSNP}}   \code{\link{snp}}
 }
 
-\examples{
 
-}
 \keyword{utilities}

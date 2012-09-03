@@ -61,8 +61,6 @@ SNPassoc: an R package to perform whole genome association studies. Bioinformati
 
 \seealso{ \code{\link{association}} \code{\link{setupSNP}} \code{\link{WGassociation}} }
 
-\examples{
 
-}
 
 \keyword{utilities}

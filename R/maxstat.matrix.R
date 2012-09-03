@@ -13,7 +13,7 @@ maxstat.matrix<-function(x,...)
         corr[1,2]<-corr[2,1]<-rho[1]
         corr[1,3]<-corr[3,1]<-rho[2]
         corr[2,3]<-corr[3,2]<-rho[3]
-        prob <- pmvnorm(lower, upper, mean, cor=sqrt(corr), ...)
+        prob <- pmvnorm(lower, upper, mean, corr=sqrt(corr), ...)
         prob
       }
 

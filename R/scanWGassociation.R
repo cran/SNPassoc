@@ -93,10 +93,11 @@ function (formula, data, model = c("all"), nperm, quantitative = is.quantitative
 #      aux2<-matrix(unlist(o),nrow=nrow(aux),ncol=ncol(aux))
 #      aux2[is.na(aux2)]<-0
 
+# R 2.15
+#      aux2<-matrix(.Internal(unlist(dataSNPs, FALSE, FALSE)),nrow=nrow(dataSNPs),ncol=ncol(dataSNPs))
+#	   aux2<-cbind(varDep,aux2) 
 
-      aux2<-matrix(.Internal(unlist(dataSNPs, FALSE, FALSE)),nrow=nrow(dataSNPs),ncol=ncol(dataSNPs))
-      aux2<-cbind(varDep,aux2)
-
+      aux2<-matrix(unlist(cbind(varDep,dataSNPs), FALSE, FALSE),nrow=nrow(dataSNPs),ncol=ncol(dataSNPs)+1)
      
       aux2[is.na(aux2)]<-0
       nr<-nrow(aux2)

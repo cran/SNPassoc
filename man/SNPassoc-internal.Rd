@@ -25,6 +25,8 @@
 \alias{recessive.default}
 \alias{overdominant.default}
 \alias{additive.default}
+\alias{trim}
+\alias{interleave}
 
 
 \title{Internal SNPstat functions}
@@ -45,6 +47,8 @@ expandsetupSNP(o)
 pvalTest(dataX,Y,quantitative,type,genotypingRate)
 modelTest(X,Y,quantitative,type,genotypingRate)
 assoc(y,x,test="lrt",quantitative)
+trim(s)
+interleave(..., append.source=TRUE, sep=": ", drop=FALSE)
 \method{codominant}{default}(o)
 \method{dominant}{default}(o)
 \method{recessive}{default}(o)
