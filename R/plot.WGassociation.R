@@ -70,12 +70,12 @@ function (x, alpha = 0.05, plot.all.SNPs = FALSE, print.label.SNPs = TRUE,
              # p-values   
                 plot(c(1:length(xx)), xx, type = "b", axes = FALSE, 
                   ylab = "", xlab = "", ylim=ylims)
-                axis(1, at = c(1:length(xx)), label = rep("", 
+                axis(1, at = c(1:length(xx)), labels = rep("", 
                   length(xx)), pos = 0)
                 control.y <- ceiling(seq(0,ceiling(ylims[2]),length=6))
 
 
-                axis(2, at = control.y, label = -control.y, 
+                axis(2, at = control.y, labels = -control.y, 
                   pos = 1,xaxt = "n")
 
            

@@ -1,3 +1,16 @@
+v1.8-4
+2012-05-12 
+- change: scanWGassociation (.Internal problems see e-mail from B. Ripley)
+- change: other Warnings after checking the package using R-1.5.1
+
+v1.8-3
+2012-05-09 
+- anova.glm labels (see Peter's e-mail) also changed in interactionPval function
+
+v1.8-2
+2012-05-03 
+- Dropped dependency on goat by adding trim and interleave
+
 v1.8-1
 2011-11-22 (Changes to R-2.14.0)
 - require has been removed from firstlib function

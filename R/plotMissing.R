@@ -19,7 +19,7 @@ function (x, print.labels.SNPs = TRUE,
         col = c("white", "black"), ylab = "Individuals", xlab = ifelse(print.labels.SNPs, 
             "", "SNPs"), axes = !print.labels.SNPs)
    if (print.labels.SNPs) {
-        axis(1, at = c(1:length(label.SNPs)), label = label.SNPs, 
+        axis(1, at = c(1:length(label.SNPs)), labels = label.SNPs, 
             las = 3, cex.axis = 0.7)
         axis(2)
     }

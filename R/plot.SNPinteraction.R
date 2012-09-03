@@ -46,8 +46,8 @@ function(x, main.tit, ...)
  image(1:nrow(x.OK),1:ncol(x.OK),x.OK,col=mypalette,breaks=pvalCut,
      axes=FALSE,xlab="",ylab="")
  
- axis(1,at=c(1:nrow(x.OK)),label=label.SNPs,las=3,cex.axis=0.7,col="darkgreen")
- axis(2,at=c(1:nrow(x.OK)),label=label.SNPs,las=1,cex.axis=0.7,col="darkgreen")
+ axis(1,at=c(1:nrow(x.OK)),labels=label.SNPs,las=3,cex.axis=0.7,col="darkgreen")
+ axis(2,at=c(1:nrow(x.OK)),labels=label.SNPs,las=1,cex.axis=0.7,col="darkgreen")
  
 
  if (missing(main.tit))

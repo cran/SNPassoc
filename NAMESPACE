@@ -34,7 +34,7 @@ dscore
 import("survival")
 import("mvtnorm")
 importFrom(stats, reorder)
-import("gdata")
+#import("gdata")
 
 
 S3method(summary,haplo.glm)

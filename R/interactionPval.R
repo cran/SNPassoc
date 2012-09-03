@@ -125,7 +125,7 @@ function (formula, data, quantitative = is.quantitative(formula,
                   pval[j,i] <- anova(mod.b1, mod.a, test="F")$"Pr(>F)"[2]
                 else
                  {
-                  t1 <- anova(mod.b1, mod.a, test="Chisq")$"Pr(>F)"[2]
+                  t1 <- anova(mod.b1, mod.a, test="Chisq")
                   pval[j,i] <- t1[2, grep("^P.*Chi",names(t1))]
                  }
                }
@@ -135,7 +135,7 @@ function (formula, data, quantitative = is.quantitative(formula,
                   pval[j,i] <- anova(mod.b2, mod.a, test="F")$"Pr(>F)"[2]
                 else
                  {
-                  t1 <- anova(mod.b2, mod.a, test="Chisq")$"Pr(>F)"[2]
+                  t1 <- anova(mod.b2, mod.a, test="Chisq")
                   pval[j,i] <- t1[2, grep("^P.*Chi",names(t1))]
                  }
                }
