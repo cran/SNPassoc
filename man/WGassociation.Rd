@@ -24,7 +24,8 @@
 
 }
 \usage{
-   WGassociation(formula, data, model = c("all"), quantitative = is.quantitative(formula, data),
+   WGassociation(formula, data, model = c("all"), 
+                 quantitative = is.quantitative(formula, data),
                  genotypingRate = 80, level = 0.95, ...)
 }
 
@@ -110,7 +111,8 @@ print(ansCoAd)
 pvalAll<-pvalues(ansAll)
 pvalCoAd<-pvalues(ansCoAd)
 
-# when all models are fitted and we are interested in obtaining p values for different genetic models
+# when all models are fitted and we are interested in obtaining 
+# p values for different genetic models
 
 # codominant model
 pvalCod<-codominant(ansAll)

@@ -6,17 +6,17 @@ interleave <- function(..., append.source=TRUE, sep=": ", drop=FALSE)
 
     sources[sapply(sources, is.null)] <- NULL
 
-    sources <- lapply(sources, function(x)
+    sources <- mclapply(sources, function(x)
                       if(is.matrix(x) || is.data.frame(x))
-                      x else t(x) )
+                      x else t(x) , ... )
 
     nrows <- sapply( sources, nrow )
     mrows <- max(nrows)
     if(any(nrows!=mrows & nrows!=1 ))
       stop("Arguments have differening numbers of rows.")
 
-    sources <- lapply(sources, function(x)
-                      if(nrow(x)==1) x[rep(1,mrows),,drop=drop] else x )
+    sources <- mclapply(sources, function(x)
+                      if(nrow(x)==1) x[rep(1,mrows),,drop=drop] else x , ...)
 
     tmp <- do.call("rbind",sources)
 

@@ -7,7 +7,8 @@
 
 }
 \usage{
-  odds(x, model=c("log-additive", "dominant", "recessive", "overdominant", "codominant"), sorted=c("no","p-value","or"))
+ odds(x, model=c("log-additive", "dominant", "recessive", "overdominant", "codominant"), 
+      sorted=c("no","p-value","or"))
 }
 
 \arguments{

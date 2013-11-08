@@ -1,11 +1,11 @@
 `summary.setupSNP` <-
-function(object,...)
+function(object, ...)
  {
   if (!inherits(object, "setupSNP")) 
         stop("object must be an object of class 'setupSNP'")
   colSNPs<-attr(object,"colSNPs")
   if(length(colSNPs)>0){
-  temp<-lapply(object[,colSNPs, drop=FALSE],expandsetupSNP)
+  temp <- mclapply(object[,colSNPs, drop=FALSE], expandsetupSNP)
 
   ans<-temp[[1]] 
   i<-2
@@ -14,10 +14,10 @@ function(object,...)
     ans<-rbind(ans,temp[[i]])
     i<-i+1 
    } 
-  dimnames(ans)[[1]]<-attr(object,"label.SNPs")
+  dimnames(ans)[[1]] <- attr(object,"label.SNPs")
   out<-as.matrix(ans)
-  dimnames(out)[[2]][4]<-"missing (%)"
-  print(out,quote=FALSE,na.print="-")
+  dimnames(out)[[2]][4] <- "missing (%)"
+  print(out, quote=FALSE, na.print="-")
   } else {
     class(object)<-"data.frame"
     ans<-summary(object)
