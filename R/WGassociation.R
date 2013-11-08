@@ -67,7 +67,7 @@ function (formula, data, model=c("all"), quantitative = is.quantitative(formula,
 
     SNPs<-attr(data,"label.SNPs")
 
-    tab<-lapply(SNPs, association.i, adj=adj, data=data, model=model,
+    tab<-mclapply(SNPs, association.i, adj=adj, data=data, model=model,
             quantitative=quantitative, genotypingRate=
             genotypingRate, level=level, ...) 
 

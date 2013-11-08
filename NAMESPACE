@@ -27,10 +27,10 @@ GenomicControl,
 maxstat,
 LD,
 LDplot,
-LDtable,
-dscore
+LDtable
 )
 
+import("haplo.stats")
 import("survival")
 import("mvtnorm")
 importFrom(stats, reorder)

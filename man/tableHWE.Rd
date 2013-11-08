@@ -11,13 +11,14 @@
                level can be changed
 }
 \usage{
-tableHWE(x, strata)
+tableHWE(x, strata, ...)
 
 }
 
 \arguments{
   \item{x}{an object of class 'setupSNP'}
   \item{strata}{a factor variable for a stratified analysis}
+  \item{...}{optional arguments}
  
 }
 \details{

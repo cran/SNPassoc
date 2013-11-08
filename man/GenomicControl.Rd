@@ -38,7 +38,7 @@ GenomicControl(x, snp.sel)
 
 data(SNPs) 
 datSNP<-setupSNP(SNPs,6:40,sep="")
-res<-scanWGassociation(casco,datSNP,model=c("do","re","log-add"))
+res<-WGassociation(casco,datSNP,model=c("do","re","log-add"))
 
 # Genomic Control 
 resCorrected<-GenomicControl(res)

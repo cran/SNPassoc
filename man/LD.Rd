@@ -20,9 +20,11 @@ LD(g1, \dots)
 LDplot(x, digits = 3, marker, distance, which = c("D", "D'",
     "r", "X^2", "P-value", "n", " "), ...)
 
-LDtable(x, colorcut = c(0, 0.01, 0.025, 0.05, 0.1, 1), colors = heat.colors(length(colorcut)),
-    textcol = "black", digits = 3, show.all = FALSE, which = c("D",
-        "D'", "r", "X^2", "P-value", "n"), colorize = "P-value", cex, \dots)
+LDtable(x, colorcut = c(0, 0.01, 0.025, 0.05, 0.1, 1), 
+       colors = heat.colors(length(colorcut)),
+       textcol = "black", digits = 3, show.all = FALSE, 
+       which = c("D", "D'", "r", "X^2", "P-value", "n"), 
+       colorize = "P-value", cex, \dots)
 
 
 }
