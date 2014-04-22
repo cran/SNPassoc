@@ -1,3 +1,7 @@
+v1.9-2
+2014-04-22
+- fixed bug in tableHWE function (see e-mail from Martin Rijlaarsdam)
+
 v1.9-1
 2013-09-05 (after being removed from CRAN)
 - mclapply with parallel

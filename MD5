@@ -1,4 +1,4 @@
-6b10ffe809209e98845aea686e35201a *DESCRIPTION
+bb7346f17470522c1b0205e4e991c60c *DESCRIPTION
 4742a8725745f7069e20312f331afdb5 *NAMESPACE
 a2d35a09c4d690a469cef28c24b44f86 *R/Bonferroni.sig.R
 7da84dd8215f19d88374fcd87abe2e5a *R/GenomicControl.R
@@ -98,7 +98,7 @@ b12e3368c07d024e62f6d58e57ccada1 *R/sortSNPs.R
 7d641b3e4f4752275adb48d0d0bc8b2b *R/summary.snp.R
 73e82c61272523637ca0b1f117f8789c *R/table.corner.R
 8c54934c688c3fd71ce893585cd4e3c6 *R/table.interaction.R
-1d85f74394a6722c4264065d0189249a *R/tableHWE.R
+5e95ec1dc12ff86b7fe7576a0ea98637 *R/tableHWE.R
 a77823953004e9f6461f470ca8661847 *R/togeno.R
 dd19f71968800f0480eade0a63b4ac05 *R/trim.R
 233ed01a8361f86577e201f5a22a0783 *R/z$.setupSNP.R
@@ -109,7 +109,7 @@ dd19f71968800f0480eade0a63b4ac05 *R/trim.R
 6bd68bb31cc27d4446d077779c1538bc *R/z[_-.setupSNP.R
 e84f6d06e7dfc27c911a40f96919fd49 *data/HapMap.rda
 141e16c41f1c2ec9c86d3dadbc3c8fe4 *data/SNPs.rda
-b159fe5ff16f4f537eb243865e70078d *inst/docs/changelog.txt
+eef7318dae8f06fca8448bc54bd28ee7 *inst/docs/changelog.txt
 3cbdfdf22798163a0ecc0423c4e3986d *inst/docs/todo.txt
 720bf3a2d0e711f09fb8758f2437d5b4 *man/BonferroniSig.Rd
 121393cbd9ae4c58995dada7e29a63ba *man/GenomicControl.Rd

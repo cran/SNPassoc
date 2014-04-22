@@ -4,7 +4,8 @@ function (x, strata, ...)
     if (!inherits(x, "setupSNP"))
         stop("x must be an object of class 'setupSNP'")
     colSNPs <- attr(x, "colSNPs")
-    data.SNPs <- x[colSNPs, , drop=FALSE]
+# VM  seleccion incorrecta de datos!!  data.SNPs <- x[colSNPs,,drop=FALSE]
+    data.SNPs <- x[,colSNPs, drop=FALSE]
     tt <- mclapply(data.SNPs, table, ...)
     ans <- cbind("HWE (p value)"=unlist(mclapply(tt, SNPHWE, ...)))
     if (!missing(strata)) {
