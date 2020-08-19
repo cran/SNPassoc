@@ -1,5 +1,5 @@
-bb7346f17470522c1b0205e4e991c60c *DESCRIPTION
-4742a8725745f7069e20312f331afdb5 *NAMESPACE
+4c2d1c4ef273117ea30d0cbddc57d12c *DESCRIPTION
+48db2c3cbd92227266283115213e7a02 *NAMESPACE
 a2d35a09c4d690a469cef28c24b44f86 *R/Bonferroni.sig.R
 7da84dd8215f19d88374fcd87abe2e5a *R/GenomicControl.R
 c5e9ca529b67a4e7a3d1fbfedc1dbb6e *R/GenotypeRate.R
@@ -139,4 +139,4 @@ b90d789ef7f5cd7d52dbf4e703abfe02 *man/scanWGassociation.Rd
 73bb8149ea0fbd85904aa00ea64412a0 *man/setupSNP.Rd
 405f01555aec781f3b8f5b3f2153958b *man/snp.Rd
 2bb0c74deafa2a63cfe5057cdb78945a *man/sortSNPs.Rd
-0fae2a638d9ab82d77be3e9fca7c4ed9 *man/tableHWE.Rd
+8e01e2239d0664588e1c01a29081790c *man/tableHWE.Rd
