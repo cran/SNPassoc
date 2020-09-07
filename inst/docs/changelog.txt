@@ -1,3 +1,9 @@
+v2.0-0
+2020-08-23
+- Added dscore function
+- Added related function
+- Changed email address after receiving Brian's email
+
 v1.9-2
 2014-04-22
 - fixed bug in tableHWE function (see e-mail from Martin Rijlaarsdam)

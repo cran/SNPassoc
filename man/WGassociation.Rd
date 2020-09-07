@@ -132,25 +132,6 @@ WGstats(ansAll)
 #for plotting the p values
 plot(ansAll)
 
-
-#
-# Whole genome analysis
-#
-
-data(HapMap)
-# Next steps may be very time consuming. So they are not executed
-
-#myDat<-setupSNP(HapMap, colSNPs=3:9809, sort = TRUE,
-#   info=HapMap.SNPs.pos, sep="")
-#resHapMap<-WGassociation(group~1, data=myDat, model="log")
-
-
-# However, the results are saved in the object "resHapMap"
-# to illustrate print, summary and plot functions
-summary(resHapMap)
-plot(resHapMap)
-print(resHapMap)
-
 }
 
 \keyword{utilities}
