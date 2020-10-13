@@ -1,4 +1,4 @@
-d070cf1b46fdef8b8850058029df6333 *DESCRIPTION
+5112b54dea1315da83d021d6b27aa444 *DESCRIPTION
 cf3899235181c695dcde384848f31184 *NAMESPACE
 a2d35a09c4d690a469cef28c24b44f86 *R/Bonferroni.sig.R
 7da84dd8215f19d88374fcd87abe2e5a *R/GenomicControl.R
@@ -64,7 +64,6 @@ ef40a0bd773405f037c1d680572a9b3e *R/overdominant.default.R
 45f30d8b6d1d0c66d4c0bf39bb5d824f *R/overdominant.snp.R
 0a5e141c45a5c07c18f5ab2d4faa174d *R/permTest.R
 faba9ef5ad3eacfbb76dcb290aa53bdd *R/plot.SNPinteraction.R
-7dff83bea353c5ea967348255be21e04 *R/plot.WGassociation.R
 7f3acfcba9d1697e01f5b2bab38d2937 *R/plot.permTest.R
 eea7dd20e8ea77197528a7dfe36387a2 *R/plot.setupSNP.R
 65129e512eedae74b55f472594a37e0c *R/plot.snp.R
@@ -114,9 +113,9 @@ dd19f71968800f0480eade0a63b4ac05 *R/trim.R
 e84f6d06e7dfc27c911a40f96919fd49 *data/HapMap.rda
 141e16c41f1c2ec9c86d3dadbc3c8fe4 *data/SNPs.rda
 b3bcabf092d57adea302f19a5e300b0d *data/asthma.rda
-a7fa832c333665fab0546c8649e8ed95 *inst/doc/SNPassoc.R
-940d5e064b007c99823601a4cf9226d4 *inst/doc/SNPassoc.Rmd
-78365cf0a33a712b19271a6af94d517d *inst/doc/SNPassoc.html
+620109c139a645e742b5626947808d27 *inst/doc/SNPassoc.R
+36a33a465b77b6a5b4e8adc9fa84fe5e *inst/doc/SNPassoc.Rmd
+87fe6971f0d87000a02cd70f1395c991 *inst/doc/SNPassoc.html
 f625e9acb7ebc321a58404ff3c22cbc4 *inst/docs/changelog.txt
 720bf3a2d0e711f09fb8758f2437d5b4 *man/BonferroniSig.Rd
 03ef2efcdf8bc89eae5f7e3448f78c83 *man/GenomicControl.Rd
@@ -149,6 +148,6 @@ b90d789ef7f5cd7d52dbf4e703abfe02 *man/scanWGassociation.Rd
 73bb8149ea0fbd85904aa00ea64412a0 *man/setupSNP.Rd
 405f01555aec781f3b8f5b3f2153958b *man/snp.Rd
 2bb0c74deafa2a63cfe5057cdb78945a *man/sortSNPs.Rd
-0fae2a638d9ab82d77be3e9fca7c4ed9 *man/tableHWE.Rd
-940d5e064b007c99823601a4cf9226d4 *vignettes/SNPassoc.Rmd
+65b6fa0f4008f0cd254c86ad6c5923d2 *man/tableHWE.Rd
+36a33a465b77b6a5b4e8adc9fa84fe5e *vignettes/SNPassoc.Rmd
 de00cbc519ff1040189962723ce1e508 *vignettes/multiomic.bib

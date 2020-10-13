@@ -1,28 +1,28 @@
 ---
-title: "SNPassoc: an R package to perform whole genome association studies"
+title: 'SNPassoc: an R package to perform whole genome association studies'
 author:
 - name: Juan R. Gonzalez
   affiliation:
-  - &isglobal Bioinformatics Research Group in Epidemiolgy (BRGE), Barcelona Institute for Global Health (ISGlobal)
-  - &uab Department of Mathematics, Autonomous University of Barcelona (UAB)
+  - Bioinformatics Research Group in Epidemiolgy (BRGE), Barcelona Institute for Global Health (ISGlobal)
+  - Department of Mathematics, Autonomous University of Barcelona (UAB)
   email: juanr.gonzalez@isglobal.org
 - name: Victor Moreno
-  affiliation: 
-  - &ico Catalan Institute of Oncology
+  affiliation: Catalan Institute of Oncology
 date: "`r Sys.Date()`"
-package: "`r pkg_ver('SNPassoc')`"
+package: "`r paste('SNPassoc', packageVersion('SNPassoc'))`"
 output:
   BiocStyle::html_document:
-    number_sections: true
+    number_sections: yes
     toc: yes
     fig_caption: yes
-    toc_float: true
+    toc_float: yes
 bibliography: multiomic.bib
 vignette: >
   %\VignetteIndexEntry{SNPassoc: an R package to perform whole genome association studies}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::rmarkdown} 
   %\VignetteEncoding{UTF-8}
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(comment="", warning=FALSE, message=FALSE, cache=TRUE)
@@ -309,7 +309,7 @@ ans.int
 
 we can visualize the results by
 
-```{r plotInf, fig.cap="Interaction plot. Interaction plot of SNPs significant al 10\\% significant level (see help of 'interactionPval'  function to see what is represented in the plot). "}
+```{r plotInf, fig.cap="Interaction plot. Interaction plot of SNPs significant al 10\\% significant level (see help of 'interactionPval'  function to see what is represented in the plot). ", fig.height=7, fig.width=7}
 plot(ans.int)
 ```
 
@@ -374,7 +374,7 @@ for (i in 4:7) {
 
 The results can be visualized with the following plot
 
-```{r plotSliding, fig.cap="Sliding window approach. Results obtained of varying haplotype size from 4 up to 7 of  6th to the 15th SNP from asthma data example"}
+```{r plotSliding, fig.cap="Sliding window approach. Results obtained of varying haplotype size from 4 up to 7 of  6th to the 15th SNP from asthma data example", fig.height=7, fig.width=7}
 par(mfrow=c(2,2))
 for (i in 4:7) {
     plot(haplo.score[[i-3]])
@@ -404,7 +404,7 @@ pchisq(lrt$lrt, lrt$df, lower=FALSE)
 
 We can also test the association between asthma and the haplotype  adjusted for smoking status
 
-```{ lrt_hap_Adj}
+```{r lrt_hap_Adj}
 smoke <- asthma.s$smoke
 mod.adj.ref <- glm(trait ~ smoke, family="binomial")
 mod.adj <- haplo.glm(trait ~ genoH3 + smoke ,           

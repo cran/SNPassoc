@@ -134,7 +134,7 @@ asthma.s2 <- setupSNP(asthma, colSNPs = idx, sep="")
 ans.int <- interactionPval(casecontrol ~ 1, data=asthma.s2)
 ans.int
 
-## ----plotInf, fig.cap="Interaction plot. Interaction plot of SNPs significant al 10\\% significant level (see help of 'interactionPval'  function to see what is represented in the plot). "----
+## ----plotInf, fig.cap="Interaction plot. Interaction plot of SNPs significant al 10\\% significant level (see help of 'interactionPval'  function to see what is represented in the plot). ", fig.height=7, fig.width=7----
 plot(ans.int)
 
 ## ----haplo_em-----------------------------------------------------------------
@@ -167,7 +167,7 @@ for (i in 4:7) {
                                        max.sim=200)) 
  }
 
-## ----plotSliding, fig.cap="Sliding window approach. Results obtained of varying haplotype size from 4 up to 7 of  6th to the 15th SNP from asthma data example"----
+## ----plotSliding, fig.cap="Sliding window approach. Results obtained of varying haplotype size from 4 up to 7 of  6th to the 15th SNP from asthma data example", fig.height=7, fig.width=7----
 par(mfrow=c(2,2))
 for (i in 4:7) {
     plot(haplo.score[[i-3]])
@@ -187,6 +187,18 @@ intervals(mod)
 ## ----lrt_hap------------------------------------------------------------------
 lrt <- mod$lrt
 pchisq(lrt$lrt, lrt$df, lower=FALSE)
+
+## ----lrt_hap_Adj--------------------------------------------------------------
+smoke <- asthma.s$smoke
+mod.adj.ref <- glm(trait ~ smoke, family="binomial")
+mod.adj <- haplo.glm(trait ~ genoH3 + smoke ,           
+                 family="binomial", 
+                 locus.label=snpsH3,
+                 allele.lev=attributes(genoH3)$unique.alleles,
+                 control = haplo.glm.control(haplo.freq.min=0.05))
+
+lrt.adj <- mod.adj.ref$deviance - mod.adj$deviance
+pchisq(lrt.adj, mod.adj$lrt$df, lower=FALSE)
 
 ## ----sessionInfo--------------------------------------------------------------
 sessionInfo()

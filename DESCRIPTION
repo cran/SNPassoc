@@ -1,10 +1,10 @@
 Package: SNPassoc
-Version: 2.0-0
-Date: 2020-09-07
+Version: 2.0-1
+Date: 2020-10-10
 Depends: R (>= 4.0.0)
 Imports: haplo.stats, mvtnorm, parallel, survival, tidyr, plyr,
-        ggplot2, poisbinom
-Suggests: testthat, knitr, BiocStyle, rmarkdown, biomaRt
+        ggplot2, BiocStyle, poisbinom
+Suggests: testthat, knitr, rmarkdown, biomaRt
 Title: SNPs-Based Whole Genome Association Studies
 Author: Juan R Gonzalez and Victor Moreno
 Maintainer: Juan R Gonzalez <juanr.gonzalez@isglobal.org>
@@ -15,6 +15,6 @@ Encoding: latin1
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2020-09-07 13:00:55 UTC; jrgonzalez
+Packaged: 2020-10-13 06:36:50 UTC; jrgonzalez
 Repository: CRAN
-Date/Publication: 2020-09-07 16:10:03 UTC
+Date/Publication: 2020-10-13 08:30:08 UTC
