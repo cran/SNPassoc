@@ -1,6 +1,6 @@
 Package: SNPassoc
-Version: 2.0-1
-Date: 2020-10-10
+Version: 2.0-2
+Date: 2020-11-10
 Depends: R (>= 4.0.0)
 Imports: haplo.stats, mvtnorm, parallel, survival, tidyr, plyr,
         ggplot2, BiocStyle, poisbinom
@@ -15,6 +15,6 @@ Encoding: latin1
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2020-10-13 06:36:50 UTC; jrgonzalez
+Packaged: 2020-11-10 19:32:05 UTC; jrgonzalez
 Repository: CRAN
-Date/Publication: 2020-10-13 08:30:08 UTC
+Date/Publication: 2020-11-10 23:00:11 UTC
