@@ -28,8 +28,16 @@ maxstat,
 LD,
 LDplot,
 LDtable,
-related,
-dscore
+dscore,
+pscore,
+getNiceTable,
+getGeneSymbol,
+dscore,
+Table.N.Per,
+Table.mean.se,
+is.Monomorphic,
+sortSNPs,
+related
 )
 
 import("haplo.stats")
@@ -41,6 +49,13 @@ importFrom("poisbinom", "dpoisbinom" )
 importFrom("parallel", "mclapply")
 importFrom("plyr", "arrange", "count")
 importFrom("grDevices", "heat.colors")
+importFrom("Biostrings", "getSeq", "DNA_BASES")
+importFrom("GenomicRanges", "GRanges", "strand")
+importFrom("IRanges", "IRanges")
+importFrom("S4Vectors", "Rle")
+importFrom("VariantAnnotation", "locateVariants", "AllVariants")
+importFrom("TxDb.Hsapiens.UCSC.hg19.knownGene","TxDb.Hsapiens.UCSC.hg19.knownGene")
+importFrom("org.Hs.eg.db","org.Hs.egSYMBOL2EG")
 importFrom("graphics", "abline", "axis", "barplot", "hist", "image",
            "layout", "legend", "lines", "matplot", "par", "segments",
            "strheight", "strwidth", "text", "title")
@@ -137,7 +152,6 @@ S3method(plot, dscore)
 # hidden functions
 
 # as.snp 
-# is.Monomorphic
 # is.quantitative
 # is.snp 
 # association.fit
@@ -152,7 +166,7 @@ S3method(plot, dscore)
 # orderChromosome
 
 # SNPHWE 
-# sortSNPs 
+#  
 # table.corner
 # table.interaction 
 # togeno 

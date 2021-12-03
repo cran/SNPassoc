@@ -1,6 +1,10 @@
 ## ----setup, include=FALSE-----------------------------------------------------
 knitr::opts_chunk$set(comment="", warning=FALSE, message=FALSE, cache=TRUE)
 
+## ----resetUserConf, echo=FALSE, eval=TRUE-------------------------------------
+oldpar <- par(no.readonly = TRUE)  
+on.exit(par(oldpar))            
+
 ## ----load_asthma--------------------------------------------------------------
 data(asthma, package = "SNPassoc")
 str(asthma, list.len=9)
