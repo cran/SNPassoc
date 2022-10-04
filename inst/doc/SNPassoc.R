@@ -51,7 +51,7 @@ hwe2[snpNHWE,]
 
 ## ----remove_SNPs--------------------------------------------------------------
 snps.ok <- rownames(hwe2)[hwe2[,2]>=0.001]
-pos <- which(colnames(asthma)%in%snps.ok, useNames = FALSE)
+pos <- which( colnames(asthma) %in% snps.ok, useNames = FALSE)
 asthma.s <- setupSNP(asthma, pos, sep="")
 
 ## ----association--------------------------------------------------------------

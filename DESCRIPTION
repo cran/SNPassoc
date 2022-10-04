@@ -1,6 +1,6 @@
 Package: SNPassoc
-Version: 2.0-12
-Date: 2022-08-19
+Version: 2.0-17
+Date: 2022-10-03
 Depends: R (>= 4.0.0)
 Imports: haplo.stats, mvtnorm, parallel, survival, tidyr, plyr,
         ggplot2, BiocStyle, poisbinom, Biostrings, VariantAnnotation,
@@ -21,10 +21,10 @@ Encoding: UTF-8
 VignetteBuilder: knitr
 RoxygenNote: 7.1.2
 NeedsCompilation: no
-Packaged: 2022-08-19 20:28:50 UTC; dpelegri
+Packaged: 2022-10-03 07:35:48 UTC; dpelegri
 Author: Victor Moreno [aut],
   Juan R Gonzalez [aut],
   Dolors Pelegri [aut, cre]
 Maintainer: Dolors Pelegri <dolors.pelegri@isglobal.org>
 Repository: CRAN
-Date/Publication: 2022-08-20 21:50:14 UTC
+Date/Publication: 2022-10-04 09:20:08 UTC
