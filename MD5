@@ -1,5 +1,5 @@
-03a47295e4a09883d5321008b7c9eaf3 *DESCRIPTION
-ab9ac27c29b25b00b384a432ced00b37 *NAMESPACE
+ec468d81d5f3a32c7602e694dc6ee787 *DESCRIPTION
+a19d268fc67a4e73e1f9ac218eec6884 *NAMESPACE
 d0a396ca4ce987f1597404f0deb82a88 *R/Bonferroni.sig.R
 64da403e5e1b0b15d9e35aad3b2f60f2 *R/GenomicControl.R
 c5e9ca529b67a4e7a3d1fbfedc1dbb6e *R/GenotypeRate.R
@@ -34,7 +34,7 @@ f203c95aa5adaff4fcb0f5d99b69717e *R/dscore.default.R
 6feadabe06475a1f7a9fe927b94b45dd *R/expandsetupSNP.R
 5c0f1ee0edf67248e10da5b47e52e9a0 *R/extractPval.R
 d01b61c176611aba3ae7da559ce1595f *R/extractPval.i.R
-9d543618994e694cebfb6aa5abae91cb *R/getGeneSymbol.R
+1fffc25b641f477fe32971b710eb36d6 *R/getGeneSymbol.R
 f42d9682893d2442d0b5d6604c9d979d *R/getNiceTable.R
 7e5e473d19e5066c37f2d01678af4819 *R/getSignificantSNPs.R
 630be123992ba1cb167d7083f6da581a *R/haplo.inter.fit.R
@@ -112,7 +112,7 @@ a77823953004e9f6461f470ca8661847 *R/togeno.R
 68c4cb1297dd0a69e9130e642d1f30ca *R/z[[_-.setupSNP.R
 6bd68bb31cc27d4446d077779c1538bc *R/z[_-.setupSNP.R
 23b5928433178de4840e39c05a4cd6eb *README.md
-40879a6751069904c19476d747672845 *build/vignette.rds
+3eb33b0e0c31f24e0d882106dbfdcef3 *build/vignette.rds
 838eabf2dd763270a558c794e261aed7 *data/HapMap.SNPs.pos.rda
 b54c146dd48f7c4948ce5b9f37b5981a *data/HapMap.rda
 4439dd4a948af7154d8a3ff1ac404799 *data/SNPs.info.pos.rda
@@ -121,7 +121,7 @@ b3bcabf092d57adea302f19a5e300b0d *data/asthma.rda
 2f0e826e5c9e7d2dda8fb8d3acc86e51 *data/resHapMap.rda
 caa445f55a70a044977002109f677c39 *inst/doc/SNPassoc.R
 4238d55e4353c9ae2ee35d7e78052906 *inst/doc/SNPassoc.Rmd
-cc103972698c5fc3447c8627eb08e3ed *inst/doc/SNPassoc.html
+5960c68f1e7c79de0adf40e053b7450f *inst/doc/SNPassoc.html
 f625e9acb7ebc321a58404ff3c22cbc4 *inst/docs/changelog.txt
 720bf3a2d0e711f09fb8758f2437d5b4 *man/BonferroniSig.Rd
 03ef2efcdf8bc89eae5f7e3448f78c83 *man/GenomicControl.Rd
