@@ -84,6 +84,9 @@ head(ans)
 #  ans.adj <- WGassociation(casecontrol ~ country + smoke, asthma.s)
 #  head(ans.adj)
 
+## ----morethan1SNPscan, eval=FALSE---------------------------------------------
+#  ans.fast <- scanWGassociation(casecontrol, asthma.s)
+
 ## ----installGitHubVersion, eval=FALSE-----------------------------------------
 #  devtools::install_github("isglobal-brge/SNPassoc")
 

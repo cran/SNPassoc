@@ -1,12 +1,12 @@
 Package: SNPassoc
-Version: 2.1-0
-Date: 2022-12-13
+Version: 2.1-2
+Date: 2024-10-28
 Depends: R (>= 4.0.0)
 Imports: haplo.stats, mvtnorm, parallel, survival, tidyr, plyr,
         ggplot2, poisbinom
 Suggests: testthat, knitr, rmarkdown, biomaRt, VariantAnnotation,
         GenomicRanges, IRanges, S4Vectors, org.Hs.eg.db,
-        TxDb.Hsapiens.UCSC.hg19.knownGene, BiocStyle
+        TxDb.Hsapiens.UCSC.hg19.knownGene
 Title: SNPs-Based Whole Genome Association Studies
 Authors@R: c( person(given = "Victor", family = "Moreno", role = "aut"),
               person(given = "Juan R", family = "Gonzalez", 
@@ -31,10 +31,10 @@ Encoding: UTF-8
 VignetteBuilder: knitr
 RoxygenNote: 7.2.2
 NeedsCompilation: no
-Packaged: 2022-12-14 19:53:28 UTC; mailos
+Packaged: 2024-10-28 16:22:05 UTC; dpelegri
 Author: Victor Moreno [aut],
   Juan R Gonzalez [aut] (<https://orcid.org/0000-0003-3267-2146>),
   Dolors Pelegri [aut, cre] (<https://orcid.org/0000-0002-5993-3003>)
 Maintainer: Dolors Pelegri <dolors.pelegri@isglobal.org>
 Repository: CRAN
-Date/Publication: 2022-12-14 20:20:02 UTC
+Date/Publication: 2024-10-28 17:30:02 UTC
